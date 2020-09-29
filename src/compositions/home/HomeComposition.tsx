@@ -71,8 +71,8 @@ export const HomeComposition = ({ account, totalSupply, rebase }: Props) => {
         <React.Fragment>
           <div className='center-h text-small mb-20'>Choose the team you will pay for*</div>
           <div className='center-h'>
-            <TeamSelectButton percent={34} />
-            <TeamSelectButton percent={66} />
+            <TeamSelectButton percent={50} />
+            <TeamSelectButton percent={50} />
           </div>
           <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
         </React.Fragment>

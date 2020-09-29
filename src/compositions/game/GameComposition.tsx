@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Header, Container, Footer, GameBoost, GameTrade, GameStats, ConnectWalletButton } from 'components';
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
-import { gameBoostApprove, gameBoostLoadAllowance } from 'store/game/gameActions';
+import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown } from 'store/game/gameActions';
 import { selectGameBoostAllowed } from 'store/game/gameSelector';
 
 interface StateFromProps {
@@ -14,12 +14,21 @@ interface StateFromProps {
 interface DispatchFromProps {
   boostApprove: typeof gameBoostApprove;
   boostLoadAllowance: typeof gameBoostLoadAllowance;
+  boostUp: typeof gameBoostUp;
+  boostDown: typeof gameBoostDown;
 }
 interface OwnProps {}
 
 type Props = StateFromProps & DispatchFromProps & OwnProps;
 
-const GameComposition: React.FC<Props> = ({ account, boostAllowed, boostApprove, boostLoadAllowance }: Props) => {
+const GameComposition: React.FC<Props> = ({
+  account,
+  boostAllowed,
+  boostApprove,
+  boostLoadAllowance,
+  boostUp,
+  boostDown,
+}: Props) => {
   useEffect(() => {
     boostLoadAllowance();
   }, [account, boostLoadAllowance]);
@@ -44,7 +53,12 @@ const GameComposition: React.FC<Props> = ({ account, boostAllowed, boostApprove,
       <Container>
         <div className='flex-h mt-50'>
           <GameTrade />
-          <GameBoost allowed={boostAllowed} onApprove={boostApprove} />
+          <GameBoost
+            allowed={boostAllowed}
+            onApprove={boostApprove}
+            boostUp={boostUp}
+            boostDown={boostDown}
+          />
         </div>
         <div className='mt-20' />
         <GameStats />
@@ -66,6 +80,8 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
   return {
     boostApprove: () => dispatch(gameBoostApprove()),
     boostLoadAllowance: () => dispatch(gameBoostLoadAllowance()),
+    boostUp: () => dispatch(gameBoostUp()),
+    boostDown: () => dispatch(gameBoostDown()),
   }
 }
 

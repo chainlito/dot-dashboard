@@ -84,18 +84,23 @@ async function allowance(contract: any, owner: string, spender: string) {
 /**
  * Orchestrator Contract Functions
  */
-async function boostUp() {
-  await orchestratorContract.methods.boostUp()
+async function boostUp(from: string) {
+  await orchestratorContract.methods.boostUp().send({ from })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
 }
 
-async function boostDown() {
-  await orchestratorContract.methods.boostDown()
+async function boostDown(from: string) {
+  await orchestratorContract.methods.boostDown().send({ from })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
+}
+
+async function getBoostRate() {
+  const result = await orchestratorContract.methods.boost().call();
+  return result;
 }
 
 /**
@@ -167,6 +172,7 @@ export default {
   // Orchestrator methods
   boostUp,
   boostDown,
+  getBoostRate,
   // Yield farming pool
   poolStake,
   poolWithdraw,

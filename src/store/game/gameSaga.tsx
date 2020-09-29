@@ -31,9 +31,33 @@ function* boostApprove() {
   }
 }
 
+function* boostUp() {
+  try {
+    const state = yield select();
+    const account = selectAccount(state);
+    if (!account) return;
+    yield web3client.boostUp(account.address);
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+function* boostDown() {
+  try {
+    const state = yield select();
+    const account = selectAccount(state);
+    if (!account) return;
+    yield web3client.boostDown(account.address);
+  } catch(err) {
+    console.error(err);
+  }
+}
+
 function* sagaWatcher() {
   yield takeLatest(ActionType.GAME_BOOST_LOAD_ALLOWANCE as any, boostLoadAllowance);
   yield takeLatest(ActionType.GAME_BOOST_APPROVE as any, boostApprove);
+  yield takeLatest(ActionType.GAME_BOOST_UP as any, boostUp);
+  yield takeLatest(ActionType.GAME_BOOST_DOWN as any, boostDown);
 }
 
 export default [
