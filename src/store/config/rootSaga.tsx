@@ -4,6 +4,7 @@ import basic from 'store/app/basicSaga';
 import account from 'store/account/accountSaga';
 import token from 'store/token/tokenSaga';
 import pool from 'store/pool/poolSaga';
+import game from 'store/game/gameSaga';
 
 export default function* rootSaga() {
     yield all([
@@ -11,6 +12,7 @@ export default function* rootSaga() {
         ...account,
         ...token,
         ...pool,
+        ...game,
     ]);
     yield put({
         type: ActionType.INIT_STORE

@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Header, Container, Footer, GameBoost, GameTrade, GameStats, ConnectWalletButton } from 'components';
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
+import { gameBoostApprove, gameBoostLoadAllowance } from 'store/game/gameActions';
+import { selectGameBoostAllowed } from 'store/game/gameSelector';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
+  boostAllowed: ReturnType<typeof selectGameBoostAllowed>;
 }
 interface DispatchFromProps {
+  boostApprove: typeof gameBoostApprove;
+  boostLoadAllowance: typeof gameBoostLoadAllowance;
 }
 interface OwnProps {}
 
 type Props = StateFromProps & DispatchFromProps & OwnProps;
 
-const GameComposition: React.FC<Props> = ({ account }: Props) => {
+const GameComposition: React.FC<Props> = ({ account, boostAllowed, boostApprove, boostLoadAllowance }: Props) => {
+  useEffect(() => {
+    boostLoadAllowance();
+  }, [account, boostLoadAllowance]);
+
   if (!account) {
     return (
       <React.Fragment>
@@ -35,7 +44,7 @@ const GameComposition: React.FC<Props> = ({ account }: Props) => {
       <Container>
         <div className='flex-h mt-50'>
           <GameTrade />
-          <GameBoost allowed={false} />
+          <GameBoost allowed={boostAllowed} onApprove={boostApprove} />
         </div>
         <div className='mt-20' />
         <GameStats />
@@ -50,10 +59,13 @@ function mapStateToProps(
 ): StateFromProps {
   return {
     account: selectAccount(state),
+    boostAllowed: selectGameBoostAllowed(state),
   };
 }
 function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
   return {
+    boostApprove: () => dispatch(gameBoostApprove()),
+    boostLoadAllowance: () => dispatch(gameBoostLoadAllowance()),
   }
 }
 

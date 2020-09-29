@@ -9,9 +9,10 @@ enum BOOST {
 
 interface Props {
   allowed: boolean;
+  onApprove: () => void;
 }
 
-const GameBoost: React.FC<Props> = ({ allowed }: Props) => {
+const GameBoost: React.FC<Props> = ({ allowed, onApprove }: Props) => {
   const [boost, setBoost] = React.useState<BOOST>(BOOST.NOBOOST);
 
   return (
@@ -42,8 +43,7 @@ const GameBoost: React.FC<Props> = ({ allowed }: Props) => {
         <Button
           variant='contained'
           className='btn-primary game-boost__pay mt-20'
-          onClick={() => {}}
-          disabled={boost === BOOST.NOBOOST}
+          onClick={onApprove}
         >
           Approve
         </Button>

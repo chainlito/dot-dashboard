@@ -65,11 +65,20 @@ enum UniType {
     UNI_GET_PERIOD_FINISH_SUCCESS = 'UNI_GET_PERIOD_FINISH_SUCCESS',
 }
 
+enum GameType {
+    GAME_BOOST_LOAD_ALLOWANCE = 'GAME_LOAD_ALLOWANCE',
+    GAME_BOOST_APPROVE = 'GAME_BOOST_APPROVE',
+    GAME_BOOST_APPROVE_SUCCESS = 'GAME_BOOST_APPROVE_SUCCESS',
+    GAME_BOOST_UP = 'GAME_BOOST_UP',
+    GAME_BOOST_DOWN = 'GAME_BOOST_DOWN',
+}
+
 export type IActionType = 
     | BasicType
     | AccountType
     | TokenType
     | PoolType
+    | GameType
     | UniType;
 
 export const ActionType = {
@@ -77,5 +86,6 @@ export const ActionType = {
     ...AccountType,
     ...TokenType,
     ...PoolType,
+    ...GameType,
     ...UniType,
 };
