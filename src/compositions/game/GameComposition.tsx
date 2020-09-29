@@ -5,11 +5,14 @@ import { Header, Container, Footer, GameBoost, GameTrade, GameStats, ConnectWall
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
 import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown } from 'store/game/gameActions';
-import { selectGameBoostAllowed } from 'store/game/gameSelector';
+import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply } from 'store/game/gameSelector';
+import { web3client } from 'lib';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
   boostAllowed: ReturnType<typeof selectGameBoostAllowed>;
+  redTotalSupply: ReturnType<typeof selectGameRedTotalSupply>;
+  blueTotalSupply: ReturnType<typeof selectGameBlueTotalSupply>;
 }
 interface DispatchFromProps {
   boostApprove: typeof gameBoostApprove;
@@ -28,10 +31,16 @@ const GameComposition: React.FC<Props> = ({
   boostLoadAllowance,
   boostUp,
   boostDown,
+
+  redTotalSupply,
+  blueTotalSupply,
 }: Props) => {
+  const [boostRate, setBoostRate] = React.useState<number>(0);
+
+  useEffect(() => { boostLoadAllowance(); }, [account, boostLoadAllowance]);
   useEffect(() => {
-    boostLoadAllowance();
-  }, [account, boostLoadAllowance]);
+    web3client.getBoostRate().then(res => setBoostRate(res));
+  })
 
   if (!account) {
     return (
@@ -55,13 +64,18 @@ const GameComposition: React.FC<Props> = ({
           <GameTrade />
           <GameBoost
             allowed={boostAllowed}
+            boostRate={boostRate}
             onApprove={boostApprove}
             boostUp={boostUp}
             boostDown={boostDown}
           />
         </div>
         <div className='mt-20' />
-        <GameStats />
+        <GameStats
+          redSupply={redTotalSupply}
+          blueSupply={blueTotalSupply}
+        />
+        <div className='mb-50' />
       </Container>
       <Footer />
     </React.Fragment>
@@ -74,6 +88,8 @@ function mapStateToProps(
   return {
     account: selectAccount(state),
     boostAllowed: selectGameBoostAllowed(state),
+    redTotalSupply: selectGameRedTotalSupply(state),
+    blueTotalSupply: selectGameBlueTotalSupply(state),
   };
 }
 function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {

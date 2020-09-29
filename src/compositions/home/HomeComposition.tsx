@@ -1,62 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { Container, Header, Footer, TeamSelectButton } from 'components';
 import { RootState } from 'types';
 import { selectAccount } from 'store/account/accountSelector';
-import { selectTotalSupply } from 'store/token/tokenSelector';
-import { tokenRebase } from 'store/token/tokenActions';
+import { selectGameBlueTotalSupply, selectGameRedTotalSupply } from 'store/game/gameSelector';
 //import { web3client } from 'lib';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
-  totalSupply: ReturnType<typeof selectTotalSupply>;
+  redTotalSupply: ReturnType<typeof selectGameRedTotalSupply>;
+  blueTotalSupply: ReturnType<typeof selectGameBlueTotalSupply>;
 }
 interface DispatchFromProps {
-  rebase: typeof tokenRebase;
 }
 interface OwnProps {}
 
 type Props = StateFromProps & DispatchFromProps & OwnProps;
 
-export const HomeComposition = ({ account, totalSupply, rebase }: Props) => {
-  //const [rebaseEnable, setRebaseEnable] = React.useState<boolean>(inWindow(Config.Token.rebase.offset, Config.Token.rebase.length));
-  //const [tokenPrice, setTokenPrice] = React.useState<number>(0);
-  //const [rebaseTokenPrice, setRebaseTokenPrice] = React.useState<number>(0);
-
-  /*const renderTokenInfo = () => (
-    <React.Fragment>
-		  <div className='flex-h'>
-      <Card className='card card-v transparent homeboxspace'>
-        <CardContent className='boxsize'>
-          <b>{numberWithDecimals(totalSupply, Config.Token.decimals, Config.Utils.decimals)}</b>
-          <Typography className='greyme'>Total supply</Typography>
-        </CardContent>
-      </Card>
-      <Card className='card card-v transparent'>
-        <CardContent className='boxsize'>
-          <b>{numberWithDecimals(( account ? account.balance : 0 ), Config.Token.decimals, Config.Utils.decimals)}</b>
-          <Typography className='greyme'>{Config.Token.symbol} Balance</Typography>
-        </CardContent>
-      </Card>
-	  </div>
-    </React.Fragment>
-  );*/
-
-  /*if (!account) {
-    return (
-      <React.Fragment>
-        <Header />
-        <Container>
-          <div className='screen-center flex-v'>
-            <ConnectWalletButton />
-          </div>
-        </Container>
-        <Footer />
-      </React.Fragment>
-    )
-  }*/
+export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply }: Props) => {
+  const [totalSupply, setTotalSupply] = React.useState<number>(0);
+  useEffect(() => setTotalSupply(redTotalSupply + blueTotalSupply), [redTotalSupply, blueTotalSupply]);
 
   return (
     <React.Fragment>
@@ -71,8 +36,8 @@ export const HomeComposition = ({ account, totalSupply, rebase }: Props) => {
         <React.Fragment>
           <div className='center-h text-small mb-20'>Choose the team you will pay for*</div>
           <div className='center-h'>
-            <TeamSelectButton percent={50} />
-            <TeamSelectButton percent={50} />
+            <TeamSelectButton percent={redTotalSupply / totalSupply * 100} />
+            <TeamSelectButton percent={blueTotalSupply / totalSupply * 100} />
           </div>
           <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
         </React.Fragment>
@@ -86,6 +51,7 @@ export const HomeComposition = ({ account, totalSupply, rebase }: Props) => {
             SEO differs from local search engine optimization in that the latter is focused on optimizing a business' online presence so that its web pages will be displayed by search engines when a user enters a local search for its products or services. The former instead is more focused on national or international searches.
           </div>
         </React.Fragment>
+        <div className='mb-50' />
       </Container>
       <Footer />
     </React.Fragment>
@@ -97,12 +63,12 @@ function mapStateToProps(
 ): StateFromProps {
   return {
     account: selectAccount(state),
-    totalSupply: selectTotalSupply(state),
+    redTotalSupply: selectGameRedTotalSupply(state),
+    blueTotalSupply: selectGameBlueTotalSupply(state),
   };
 }
 function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
   return {
-    rebase: () => dispatch(tokenRebase()),
   }
 }
 

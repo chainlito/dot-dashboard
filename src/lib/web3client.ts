@@ -12,6 +12,8 @@ const tokenContract: any = getContract(Config.Token.abi, Config.Token.address);
 const orchestratorContract: any = getContract(Config.Orchestrator.abi, Config.Orchestrator.address);
 const poolContract: any = getContract(Config.Pool.abi, Config.Pool.address);
 
+const redTokenContract: any = getContract(Config.RedToken.abi, Config.RedToken.address);
+const blueTokenContract: any = getContract(Config.BlueToken.abi, Config.BlueToken.address);
 const memeTokenContract: any = getContract(Config.MemeToken.abi, Config.MemeToken.address);
 const uniTokenContract: any = getContract(Config.UniToken.abi, Config.UniToken.address);
 const uniLpTokenContract: any = getContract(Config.UniLpToken.abi, Config.UniLpToken.address);
@@ -98,9 +100,10 @@ async function boostDown(from: string) {
     });
 }
 
-async function getBoostRate() {
+async function getBoostRate(): Promise<number> {
   const result = await orchestratorContract.methods.boost().call();
-  return result;
+  console.log(result);
+  return parseInt(result);
 }
 
 /**
@@ -186,6 +189,8 @@ export default {
   transferToken,
   // Contracts
   tokenContract,
+  redTokenContract,
+  blueTokenContract,
   orchestratorContract,
   uniTokenContract,
   memeTokenContract,

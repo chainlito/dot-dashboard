@@ -1,7 +1,15 @@
 import React from 'react';
 import { VictoryPie } from 'victory';
 
-const GameStats: React.FC = () => {
+interface Props {
+  redSupply: number;
+  blueSupply: number;
+}
+
+const GameStats: React.FC<Props> = ({
+  redSupply,
+  blueSupply,
+}: Props) => {
   return (
     <div className='flex-h'>
       <div className='game-graph center-v'>
@@ -29,11 +37,11 @@ const GameStats: React.FC = () => {
         <div className='center-h'>
           <VictoryPie
             data={[
-              {x: 1, y: 50},
-              {x: 2, y: 50}
+              {x: 1, y: (redSupply / (redSupply + blueSupply)) * 100, l: 'Red'},
+              {x: 2, y: (blueSupply / (redSupply + blueSupply)) * 100, l: 'Blue'}
             ]}
-            labels={['Red', 'Blue']}
-            labelRadius={50}
+            labels={({ datum }) => `${datum.l}: ${datum.y}%`}
+            labelRadius={30}
             style={{
               labels: {
                 fill: 'white',

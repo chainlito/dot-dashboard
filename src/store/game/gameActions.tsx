@@ -20,3 +20,17 @@ export const gameBoostUp = () => ({
 export const gameBoostDown = () => ({
   type: ActionType.GAME_BOOST_DOWN
 });
+
+export const gameLoadTotalSupply = () => ({
+  type: ActionType.GAME_LOAD_TOTAL_SUPPLY,
+});
+
+export const gameLoadRedTotalSupplySuccess = (payload: number) => ({
+  type: ActionType.GAME_LOAD_RED_TOTAL_SUPPLY_SUCCESS,
+  payload,
+});
+
+export const gameLoadBlueTotalSupplySuccess = (payload: number) => ({
+  type: ActionType.GAME_LOAD_BLUE_TOTAL_SUPPLY_SUCCESS,
+  payload,
+});

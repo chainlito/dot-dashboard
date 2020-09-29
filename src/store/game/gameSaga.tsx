@@ -4,7 +4,7 @@ import { ActionType } from 'types';
 import { web3client } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
 import Config from 'config';
-import { gameBoostApproveSuccess } from './gameActions';
+import { gameBoostApproveSuccess, gameLoadRedTotalSupplySuccess, gameLoadBlueTotalSupplySuccess } from './gameActions';
 
 function* boostLoadAllowance() {
   try {
@@ -53,11 +53,24 @@ function* boostDown() {
   }
 }
 
+function* loadTotalSupply() {
+  try {
+    const redSupply = yield web3client.getTotalSupply(web3client.redTokenContract);
+    const blueSupply = yield web3client.getTotalSupply(web3client.blueTokenContract);
+    yield put(gameLoadRedTotalSupplySuccess(redSupply));
+    yield put(gameLoadBlueTotalSupplySuccess(blueSupply));
+  } catch(err) {
+    console.error(err);
+  }
+}
+
 function* sagaWatcher() {
   yield takeLatest(ActionType.GAME_BOOST_LOAD_ALLOWANCE as any, boostLoadAllowance);
   yield takeLatest(ActionType.GAME_BOOST_APPROVE as any, boostApprove);
   yield takeLatest(ActionType.GAME_BOOST_UP as any, boostUp);
   yield takeLatest(ActionType.GAME_BOOST_DOWN as any, boostDown);
+  yield takeLatest(ActionType.GAME_LOAD_TOTAL_SUPPLY as any, loadTotalSupply);
+  yield takeLatest(ActionType.INIT_STORE as any, loadTotalSupply);
 }
 
 export default [
