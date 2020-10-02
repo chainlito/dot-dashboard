@@ -5,7 +5,7 @@ import { Header, Container, Footer, GameBoost, GameTrade, GameStats, ConnectWall
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
 import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown } from 'store/game/gameActions';
-import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply } from 'store/game/gameSelector';
+import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply, selectGameRebaseHistory } from 'store/game/gameSelector';
 import { web3client } from 'lib';
 
 interface StateFromProps {
@@ -13,6 +13,7 @@ interface StateFromProps {
   boostAllowed: ReturnType<typeof selectGameBoostAllowed>;
   redTotalSupply: ReturnType<typeof selectGameRedTotalSupply>;
   blueTotalSupply: ReturnType<typeof selectGameBlueTotalSupply>;
+  rebaseHistory: ReturnType<typeof selectGameRebaseHistory>;
 }
 interface DispatchFromProps {
   boostApprove: typeof gameBoostApprove;
@@ -34,13 +35,14 @@ const GameComposition: React.FC<Props> = ({
 
   redTotalSupply,
   blueTotalSupply,
+  rebaseHistory,
 }: Props) => {
   const [boostRate, setBoostRate] = React.useState<number>(0);
 
   useEffect(() => { boostLoadAllowance(); }, [account, boostLoadAllowance]);
   useEffect(() => {
     web3client.getBoostRate().then(res => setBoostRate(res));
-  })
+  });
 
   if (!account) {
     return (
@@ -74,6 +76,7 @@ const GameComposition: React.FC<Props> = ({
         <GameStats
           redSupply={redTotalSupply}
           blueSupply={blueTotalSupply}
+          rebaseHistory={rebaseHistory}
         />
         <div className='mb-50' />
       </Container>
@@ -90,6 +93,7 @@ function mapStateToProps(
     boostAllowed: selectGameBoostAllowed(state),
     redTotalSupply: selectGameRedTotalSupply(state),
     blueTotalSupply: selectGameBlueTotalSupply(state),
+    rebaseHistory: selectGameRebaseHistory(state),
   };
 }
 function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {

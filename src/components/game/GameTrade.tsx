@@ -5,7 +5,7 @@ const GameTrade: React.FC = () => {
     <div className='game-trade center-v'>
       <div className='center-h'>
         <div className='text-center text-medium op-50'>
-          This is placeholder.
+          Loading...
         </div>
       </div>
     </div>

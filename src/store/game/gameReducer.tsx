@@ -1,4 +1,4 @@
-import { ActionType, Action } from 'types';
+import { ActionType, Action, RebaseHistory } from 'types';
 import createReducer from 'store/config/createReducer';
 
 export interface GameReducerType {
@@ -6,6 +6,8 @@ export interface GameReducerType {
 
   redTotalSupply: number;
   blueTotalSupply: number;
+
+  rebaseHistory: Array<RebaseHistory>;
 }
 
 export const defaultState: GameReducerType = {
@@ -13,6 +15,8 @@ export const defaultState: GameReducerType = {
 
   redTotalSupply: 0,
   blueTotalSupply: 0,
+
+  rebaseHistory: [],
 };
 
 // reducers
@@ -39,10 +43,19 @@ const gameLoadBlueTotalSupplyReducer = (
 ): GameReducerType => ({
   ...state,
   blueTotalSupply: payload,
-})
+});
+
+const gameLoadRebaseHistorySuccessReducer = (
+  state: GameReducerType,
+  { payload }: Action<Array<RebaseHistory>>,
+): GameReducerType => ({
+  ...state,
+  rebaseHistory: payload,
+});
 
 export const gameReducer = createReducer<GameReducerType>(defaultState, {
   [ActionType.GAME_BOOST_APPROVE_SUCCESS]: gameBoostApproveSuccessReducer,
   [ActionType.GAME_LOAD_RED_TOTAL_SUPPLY_SUCCESS]: gameLoadRedTotalSupplyReducer,
   [ActionType.GAME_LOAD_BLUE_TOTAL_SUPPLY_SUCCESS]: gameLoadBlueTotalSupplyReducer,
+  [ActionType.GAME_LOAD_REBASE_HISTORY_SUCCESS]: gameLoadRebaseHistorySuccessReducer,
 });

@@ -20,3 +20,8 @@ export const selectGameBlueTotalSupply = createSelector(
   [ selectGameState ],
   (state) => state.blueTotalSupply,
 );
+
+export const selectGameRebaseHistory = createSelector(
+  [ selectGameState ],
+  (state) => state.rebaseHistory,
+);

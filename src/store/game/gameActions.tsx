@@ -1,4 +1,4 @@
-import { ActionType } from "types";
+import { ActionType, RebaseHistory } from "types";
 
 export const gameBoostLoadAllowance = () => ({
   type: ActionType.GAME_BOOST_LOAD_ALLOWANCE,
@@ -34,3 +34,8 @@ export const gameLoadBlueTotalSupplySuccess = (payload: number) => ({
   type: ActionType.GAME_LOAD_BLUE_TOTAL_SUPPLY_SUCCESS,
   payload,
 });
+
+export const gameLoadHistorySuccess = (payload: Array<RebaseHistory>) => ({
+  type: ActionType.GAME_LOAD_REBASE_HISTORY_SUCCESS,
+  payload,
+})

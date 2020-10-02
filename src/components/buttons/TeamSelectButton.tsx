@@ -9,8 +9,8 @@ const TeamSelectButton: React.FC<Props> = ({ percent, history }: Props) => {
 
   return (
     <div className='team-button' onClick={() => history.push('/game')}>
-      <div className='team-button__text'>{percent}%</div>
-      <div className='team-button__percent' style={{ height: `${percent}%` }}></div>
+      <div className='team-button__text'>{percent.toFixed(2)}%</div>
+      <div className='team-button__percent' style={{ height: `${percent.toFixed(2)}%` }}></div>
     </div>
   )
 }
