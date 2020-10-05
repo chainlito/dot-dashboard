@@ -40,6 +40,7 @@ const GameBoost: React.FC<Props> = ({ allowed, boostRate, onApprove, boostUp, bo
           onClick={() => {
             if (boost === BOOST.REDUCE) boostDown();
             else if (boost === BOOST.RAISE) boostUp();
+            setBoost(BOOST.NOBOOST);
           }}
           disabled={boost === BOOST.NOBOOST}
         >

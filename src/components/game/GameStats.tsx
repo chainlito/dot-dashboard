@@ -46,10 +46,10 @@ const GameStats: React.FC<Props> = ({
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">{index + 1}</TableCell>
                     <TableCell>{moment.unix(parseInt(history.timestamp)).format('YYYY/MM/DD HH:MM')}</TableCell>
-                    <TableCell>{history.percent}%</TableCell>
+                    <TableCell>{/*history.percent*/}-%</TableCell>
                     <TableCell>{history.boostCount}</TableCell>
-                    <TableCell>{numberWithDecimals(history.redSupply, Config.RedToken.decimals, Config.Utils.decimals)}</TableCell>
-                    <TableCell>{numberWithDecimals(history.blueSupply, Config.BlueToken.decimals, Config.Utils.decimals)}</TableCell>
+                    <TableCell>{/*numberWithDecimals(history.redSupply, Config.RedToken.decimals, Config.Utils.decimals)*/}-</TableCell>
+                    <TableCell>{/*numberWithDecimals(history.blueSupply, Config.BlueToken.decimals, Config.Utils.decimals)*/}-</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

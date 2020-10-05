@@ -87,14 +87,14 @@ async function allowance(contract: any, owner: string, spender: string) {
  * Orchestrator Contract Functions
  */
 async function boostUp(from: string) {
-  await orchestratorContract.methods.boostUp().send({ from })
+  await orchestratorContract.methods.boostUp().send({ from, gas: 1200000 })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
 }
 
 async function boostDown(from: string) {
-  await orchestratorContract.methods.boostDown().send({ from })
+  await orchestratorContract.methods.boostDown().send({ from, gas: 1200000 })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
