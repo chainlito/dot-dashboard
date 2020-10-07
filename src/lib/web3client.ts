@@ -89,7 +89,11 @@ async function allowance(contract: any, owner: string, spender: string) {
  */
 async function boostUp(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
-  await orchestratorContract.methods.boostUp().send({ from, gas: 1200000, value: boostRate * 0.1 * Math.pow(10, 18) })
+  await orchestratorContract.methods.boostUp().send({
+    from,
+    gas: 1200000,
+    value: boostRate * Math.pow(10, 17)
+  })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
@@ -97,7 +101,11 @@ async function boostUp(from: string) {
 
 async function boostDown(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
-  await orchestratorContract.methods.boostDown().send({ from, gas: 1200000, value: boostRate * 0.1 * Math.pow(10, 18) })
+  await orchestratorContract.methods.boostDown().send({
+    from,
+    gas: 1200000,
+    value: boostRate * Math.pow(10, 17)
+  })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
