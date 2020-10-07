@@ -27,8 +27,6 @@ type Props = StateFromProps & DispatchFromProps & OwnProps;
 
 const GameComposition: React.FC<Props> = ({
   account,
-  boostAllowed,
-  boostApprove,
   boostLoadAllowance,
   boostUp,
   boostDown,
@@ -38,10 +36,17 @@ const GameComposition: React.FC<Props> = ({
   rebaseHistory,
 }: Props) => {
   const [boostRate, setBoostRate] = React.useState<number>(0);
+  const [rebaseLag, setRebaseLag] = React.useState<number>(0);
 
   useEffect(() => { boostLoadAllowance(); }, [account, boostLoadAllowance]);
   useEffect(() => {
     web3client.getBoostRate().then(res => setBoostRate(res));
+    web3client.getRebaseLag().then(res => setRebaseLag(res));
+    const timeInterval = setInterval(() => {
+      web3client.getBoostRate().then(res => setBoostRate(res));
+      web3client.getRebaseLag().then(res => setRebaseLag(res));
+    }, 60000);
+    return () => clearInterval(timeInterval);
   });
 
   if (!account) {
@@ -65,9 +70,8 @@ const GameComposition: React.FC<Props> = ({
         <div className='flex-h mt-50'>
           <GameTrade />
           <GameBoost
-            allowed={boostAllowed}
             boostRate={boostRate}
-            onApprove={boostApprove}
+            rebaseLag={rebaseLag}
             boostUp={boostUp}
             boostDown={boostDown}
           />

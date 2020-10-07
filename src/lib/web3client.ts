@@ -10,6 +10,7 @@ if (typeof web3 !== 'undefined') {
 
 const tokenContract: any = getContract(Config.Token.abi, Config.Token.address);
 const orchestratorContract: any = getContract(Config.Orchestrator.abi, Config.Orchestrator.address);
+const policyContract: any = getContract(Config.Policy.abi, Config.Policy.address);
 const poolContract: any = getContract(Config.Pool.abi, Config.Pool.address);
 
 const redTokenContract: any = getContract(Config.RedToken.abi, Config.RedToken.address);
@@ -87,14 +88,16 @@ async function allowance(contract: any, owner: string, spender: string) {
  * Orchestrator Contract Functions
  */
 async function boostUp(from: string) {
-  await orchestratorContract.methods.boostUp().send({ from, gas: 1200000 })
+  const boostRate = await orchestratorContract.methods.boost().call();
+  await orchestratorContract.methods.boostUp().send({ from, gas: 1200000, value: boostRate * 0.1 * Math.pow(10, 18) })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
 }
 
 async function boostDown(from: string) {
-  await orchestratorContract.methods.boostDown().send({ from, gas: 1200000 })
+  const boostRate = await orchestratorContract.methods.boost().call();
+  await orchestratorContract.methods.boostDown().send({ from, gas: 1200000, value: boostRate * 0.1 * Math.pow(10, 18) })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
@@ -102,6 +105,12 @@ async function boostDown(from: string) {
 
 async function getBoostRate(): Promise<number> {
   const result = await orchestratorContract.methods.boost().call();
+  return parseInt(result);
+}
+
+async function getRebaseLag(): Promise<number> {
+  const result = await policyContract.methods.getRebaseLag().call();
+  console.log(result);
   return parseInt(result);
 }
 
@@ -175,6 +184,7 @@ export default {
   boostUp,
   boostDown,
   getBoostRate,
+  getRebaseLag,
   // Yield farming pool
   poolStake,
   poolWithdraw,
@@ -191,6 +201,7 @@ export default {
   redTokenContract,
   blueTokenContract,
   orchestratorContract,
+  policyContract,
   uniTokenContract,
   memeTokenContract,
   uniLpTokenContract,
