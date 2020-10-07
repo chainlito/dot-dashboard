@@ -11,8 +11,6 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
-import { numberWithDecimals } from 'utils';
-import Config from 'config';
 
 interface Props {
   redSupply: number;

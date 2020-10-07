@@ -102,7 +102,6 @@ async function boostDown(from: string) {
 
 async function getBoostRate(): Promise<number> {
   const result = await orchestratorContract.methods.boost().call();
-  console.log(result);
   return parseInt(result);
 }
 

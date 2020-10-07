@@ -32,7 +32,6 @@ const getTotalSupply = async (address: string, blockNo: number) => {
     method: 'GET',
     url: `${API_URL}?module=stats&action=tokensupply&contractaddress=${address}&sort=asc&apikey=${API_KEY}&blockno=${blockNo}`
   });
-  console.log(response.data.result);
   return response.data.result;
 }
 
