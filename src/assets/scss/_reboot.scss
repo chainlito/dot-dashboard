@@ -1,6 +1,7 @@
 html, body, #root {
-  background-color: $white !important;
   line-height: 1.5;
   margin: 0 !important;
-  font-family: Roboto;
+  font-family: Bai Jamjuree !important;
+  background: linear-gradient(180deg, $dark-blue 0%, $dark-blue 100%);
+  color: $white;
 }

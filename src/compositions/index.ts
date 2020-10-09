@@ -7,3 +7,4 @@ export { default as Pool3Composition } from './pool/Pool3Composition';
 export { default as FarmComposition } from './farm/FarmComposition';
 export { default as StatsComposition } from './stats/StatsComposition';
 export { default as GameComposition } from './game/GameComposition';
+export { default as RulesComposition } from './rules/RulesComposition';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import { Container } from 'components';
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
@@ -10,6 +10,7 @@ import { truncateAddress } from 'utils';
 import Config from 'config';
 import Logo from 'assets/img/logo.png';
 import { loadAccount } from 'store/account/accountActions';
+import ConnectWalletImage from 'assets/img/buttons/ConnectWallet.png';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
@@ -24,12 +25,12 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
     <Container>
       <div className="nav-header">
         <div className="center-v">
-			    <img className='nav-header__logo' src={Logo} width='152' alt='yTSLA' onClick={() => history.push('/')} />
+			    <img className='nav-header__logo' src={Logo} width='175' alt='DOT' onClick={() => history.push('/')} />
         </div>
         <div className="flex-h">
-          <Button className='btn-text' onClick={() => history.push('/about')} >About Game</Button>
-          <Button className='btn-text' onClick={() => history.push('/')} >Rules</Button>
-          <Button className='btn-text' onClick={() => history.push('/')} >FAQ</Button>
+          <Button className='btn-text' onClick={() => history.push('/')} >HOMEPAGE</Button>
+          <Button className='btn-text' onClick={() => history.push('/rules')} >RULES</Button>
+          <Button className='btn-text' onClick={() => history.push('/about')} >FAQ</Button>
         </div>
         {account ? (
           <Button
@@ -39,13 +40,9 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
             target='_blank'
           >{truncateAddress(account.address)}</Button>
         ) : (
-          <Button
-            variant='contained'
-            className='btn-header'
-            onClick={loadAccount}
-          >
-            Connect Wallet
-          </Button>
+          <IconButton onClick={loadAccount} >
+            <img src={ConnectWalletImage} alt='button' />
+          </IconButton>
         )}
       </div>
     </Container>

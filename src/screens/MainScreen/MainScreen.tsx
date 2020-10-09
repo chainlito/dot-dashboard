@@ -9,7 +9,8 @@ import {
     Pool2Composition,
     Pool3Composition,
     AboutComposition,
-    GameComposition
+    GameComposition,
+    RulesComposition,
 } from 'compositions';
 
 import 'assets/scss/index.scss';
@@ -26,7 +27,8 @@ class MainScreen extends Component {
                     <Route path='/farm-lp' exact={true} component={Pool3Composition} />
                     <Route path='/stats' exact={true} component={StatsComposition} />
                     <Route path='/about' exact={true} component={AboutComposition} />
-                    <Route path='/game' exact={true} component={GameComposition} />
+                    <Route path='/dashboard' exact={true} component={GameComposition} />
+                    <Route path='/rules' exact={true} component={RulesComposition} />
                 </Switch>
             </Router>
         );

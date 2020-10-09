@@ -39,14 +39,26 @@
   }
 
   &-medium {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 24px;
+    line-height: 130%;
   }
 
   &-large {
     font-weight: 500;
-    font-size: 30px;
-    line-height: 39px;
+    font-size: 48px;
+    line-height: 130%;
+  }
+
+  &-red {
+    color: $red;
+  }
+
+  &-gray {
+    color: $gray;
+  }
+
+  &-blue {
+    color: $blue;
   }
 
   &-center {

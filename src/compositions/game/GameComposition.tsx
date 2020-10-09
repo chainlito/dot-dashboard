@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { Header, Container, Footer, GameBoost, GameTrade, GameStats, ConnectWalletButton } from 'components';
+import { Header, Container, Footer, GameBoost, GameTrade, GameHistory, ConnectWalletButton } from 'components';
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
 import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown } from 'store/game/gameActions';
 import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply, selectGameRebaseHistory } from 'store/game/gameSelector';
 import { web3client } from 'lib';
+
+import BackgroundImage from 'assets/img/background.png';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
@@ -52,6 +54,7 @@ const GameComposition: React.FC<Props> = ({
   if (!account) {
     return (
       <React.Fragment>
+        <img className='img-background' src={BackgroundImage} alt='background' />
         <Header />
         <Container>
           <div className='screen-center flex-v'>
@@ -65,9 +68,18 @@ const GameComposition: React.FC<Props> = ({
 
   return (
     <React.Fragment>
+      <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
-        <div className='flex-h mt-50'>
+        <div className='flex-h mt-70'>
+          <div className='text-large'>Dashboard</div>
+        </div>
+        <div className='text-small mt-30'>
+          <span className='text-gray'>Game started: </span><b>01.01.2020</b> &nbsp;
+          <span className='text-gray'> | Today's Highest Rate: </span><b className='text-blue'>$ 791</b> &nbsp;
+          <span className='text-gray'> | Days to End Game: </span><b>120</b>
+        </div>
+        <div className='flex-h mt-20'>
           <GameTrade />
           <GameBoost
             boostRate={boostRate}
@@ -77,7 +89,7 @@ const GameComposition: React.FC<Props> = ({
           />
         </div>
         <div className='mt-20' />
-        <GameStats
+        <GameHistory
           redSupply={redTotalSupply}
           blueSupply={blueTotalSupply}
           rebaseHistory={rebaseHistory}

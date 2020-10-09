@@ -14,4 +14,4 @@ export { default as TeamSelectButton } from './buttons/TeamSelectButton';
 
 export { default as GameBoost } from './game/GameBoost';
 export { default as GameTrade } from './game/GameTrade';
-export { default as GameStats } from './game/GameStats';
+export { default as GameHistory } from './game/GameHistory';

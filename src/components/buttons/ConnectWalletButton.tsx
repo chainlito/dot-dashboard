@@ -1,9 +1,10 @@
 import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { RootState } from 'types';
 import { loadAccount } from 'store/account/accountActions';
+import ConnectWalletImage from 'assets/img/buttons/ConnectWallet.png';
 
 interface StateFromProps {}
 interface DispatchFromProps {
@@ -20,13 +21,9 @@ const ConnectWalletButton: React.FC<Props> = ({ loadAccount }: Props) => {
   }, []);
 
   return !isMobile ? (
-    <Button
-      variant='contained'
-      className='btn-header'
-      onClick={loadAccount}
-    >
-      Connect Wallet
-    </Button>
+    <IconButton onClick={loadAccount} >
+      <img src={ConnectWalletImage} alt='button' />
+    </IconButton>
   ) : (
     <div className='text-error'>
       Go to desktop and connect Metamask

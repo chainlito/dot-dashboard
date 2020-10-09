@@ -19,7 +19,7 @@
 	  box-shadow: none !important;
     width: 200px;
     height: 50px;
-    font-family: Roboto !important;
+    font-family: Bai Jamjuree !important;
     font-weight: 400 !important;
     text-transform: none !important;
 
@@ -42,7 +42,7 @@
   }
 
   &-text {
-    color: $black !important;
+    color: $gray !important;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -80,5 +80,21 @@
     font-size: 0.8rem !important;
     border-radius: 10px !important;
     margin-top: -3px !important;
+  }
+}
+
+.MuiButton-label {
+  font-family: Bai Jamjuree !important;
+}
+
+.MuiIconButton-root.Mui-disabled {
+  opacity: 0.25;
+}
+
+.MuiIconButton-root {
+  padding: 0px !important;
+
+  &:hover {
+    opacity: 0.75;
   }
 }

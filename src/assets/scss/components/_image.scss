@@ -1,0 +1,9 @@
+.img {
+  &-background {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    filter: blur(15px);
+    width: 100%;
+  }
+}

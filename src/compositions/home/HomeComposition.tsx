@@ -1,11 +1,22 @@
 import React, { useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { IconButton } from '@material-ui/core';
 
-import { Container, Header, Footer, TeamSelectButton } from 'components';
+import { Container, Header, Footer } from 'components';
 import { RootState } from 'types';
 import { selectAccount } from 'store/account/accountSelector';
 import { selectGameBlueTotalSupply, selectGameRedTotalSupply } from 'store/game/gameSelector';
+import BackgroundImage from 'assets/img/background.png';
+import ChooseRedImage from 'assets/img/buttons/ChooseRed.png';
+import ChooseBlueImage from 'assets/img/buttons/ChooseBlue.png';
+import ChooseRedButtonImage from 'assets/img/buttons/ChooseRedButton.png';
+import ChooseBlueButtonImage from 'assets/img/buttons/ChooseBlueButton.png';
+import RectChooseImage from 'assets/img/layouts/RectChoose.png';
+import SEO1Image from 'assets/img/seo/SEO1.png';
+import SEO2Image from 'assets/img/seo/SEO2.png';
+import SEO3Image from 'assets/img/seo/SEO3.png';
 //import { web3client } from 'lib';
 
 interface StateFromProps {
@@ -17,41 +28,109 @@ interface DispatchFromProps {
 }
 interface OwnProps {}
 
-type Props = StateFromProps & DispatchFromProps & OwnProps;
+type Props = StateFromProps & DispatchFromProps & OwnProps & RouteComponentProps;
 
-export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply }: Props) => {
+export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, history }: Props) => {
   const [totalSupply, setTotalSupply] = React.useState<number>(0);
   useEffect(() => setTotalSupply(redTotalSupply + blueTotalSupply), [redTotalSupply, blueTotalSupply]);
 
   return (
     <React.Fragment>
+      <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
 	    <Container>
-        <React.Fragment>
+        <div>
           <div className='mt-50' />
-          <div className='center-h text-large'>The same The Dots game</div>
-          <div className='center-h text-small'>only on your computer!</div>
-          <div className='mb-50' />
-        </React.Fragment>
-        <React.Fragment>
-          <div className='center-h text-small mb-20'>Choose the team you will pay for*</div>
+          <div className='ml-120 text-large'>The same game</div>
+          <div className='ml-120 text-medium text-red'>only on your computer!</div>
+          <div className='mb-30' />
+        </div>
+        <div className='home-team mb-50'>
+          <img className='home-team__background' src={RectChooseImage} alt='rectangle' />
           <div className='center-h'>
-            <TeamSelectButton percent={redTotalSupply / totalSupply * 100} />
-            <TeamSelectButton percent={blueTotalSupply / totalSupply * 100} />
+            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
+              <img src={ChooseBlueImage} alt='ChooseBlue' />
+            </IconButton>
+            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
+              <img src={ChooseRedImage} alt='ChooseRed' />
+            </IconButton>
           </div>
           <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
-        </React.Fragment>
-        <React.Fragment>
-          <div className='text-large mt-30 mb-20'>SEO text</div>
-          <div className='text-small op-75'>
-            Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results (known as "natural" or "organic" results) and excludes direct traffic and the purchase of paid placement. Additionally, it may target different kinds of searches, including image search, video search, academic search,[2] news search, and industry-specific vertical search engines. Promoting a site to increase the number of backlinks, or inbound links, is another SEO tactic. By May 2015, mobile search had surpassed desktop search.[3]
-            <br/><br/>
-            As an Internet marketing strategy, SEO considers how search engines work, the computer-programmed algorithms that dictate search engine behavior, what people search for, the actual search terms or keywords typed into search engines, and which search engines are preferred by their targeted audience. SEO is performed because a website will receive more visitors from a search engine when websites rank higher in the search engine results page (SERP). These visitors can then potentially be converted into customers.[4]
-            <br/><br/>
-            SEO differs from local search engine optimization in that the latter is focused on optimizing a business' online presence so that its web pages will be displayed by search engines when a user enters a local search for its products or services. The former instead is more focused on national or international searches.
+        </div>
+        <div className='home-stats mb-50'>
+          <div className='mr-70'>
+            <div className='text-small text-gray mb-5'>Game Started:</div>
+            <div className='text-medium'>--:--:----</div>
           </div>
-        </React.Fragment>
-        <div className='mb-50' />
+          <div className='mr-70'>
+            <div className='text-small text-gray mb-5'>Days to End Game:</div>
+            <div className='text-medium'>---</div>
+          </div>
+          <div className='mr-70'>
+            <div className='text-small text-gray mb-5'>Blue's Rate:</div>
+            <div className='text-medium text-blue'>{(blueTotalSupply / totalSupply * 100).toFixed(2)}%</div>
+          </div>
+          <div>
+            <div className='text-small text-gray mb-5'>Red's Rate:</div>
+            <div className='text-medium text-red'>{(redTotalSupply / totalSupply * 100).toFixed(2)}%</div>
+          </div>
+        </div>
+        <br/>
+        <div className='home-seo'>
+          <div className='wp-50 mr-120'>
+            <div className='text-large mb-30'>From idea to implementation</div>
+            <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results (known as "natural" or "organic" results) and excludes direct traffic and the purchase of paid placement</div>
+          </div>
+          <div className='wp-50'>
+            <img src={SEO1Image} alt='SEO' />
+          </div>
+        </div>
+        <div className='home-seo'>
+          <div className='wp-50'>
+            <img src={SEO2Image} alt='SEO' style={{ marginLeft: -150 }} />
+          </div>
+          <div className='wp-50 ml-120'>
+            <div className='text-large mb-30'>What is the Dots game?</div>
+            <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results (known as "natural" or "organic" results) and excludes direct traffic and the purchase of paid placement</div>
+          </div>
+        </div>
+
+        <div className='home-guide'>
+          <div className='mb-30'>
+            <div className='text-large'>How to play</div>
+            <div className='text-large text-red'>PROJECT DOT?</div>
+          </div>
+          <div className='flex-h mb-30'>
+            <div className='wp-50 mr-120'>
+              <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results.</div>
+            </div>
+            <div className='wp-50'>
+              <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.</div>
+            </div>
+          </div>
+        </div>
+
+        <div className='home-seo'>
+          <div className='wp-50 mr-120'>
+            <div className='text-large mb-30'>How it looks <span className='text-red'>inside</span></div>
+            <div className='text-small text-gray mb-50'>
+              In order to start playing, you just need to choose a Blue or Red team, follow the schedule on dashboard  and win!
+            </div>
+            <div className='flex-h'>
+              <IconButton className='mr-30' onClick={() => history.push('/dashboard')}>
+                <img src={ChooseBlueButtonImage} alt='button' />
+              </IconButton>
+              <IconButton onClick={() => history.push('/dashboard')}>
+                <img src={ChooseRedButtonImage} alt='button' />
+              </IconButton>
+            </div>
+          </div>
+          <div className='wp-50'>
+            <img src={SEO3Image} alt='desktop' />
+          </div>
+        </div>
+        <div className='mb-100' />
+        <br />
       </Container>
       <Footer />
     </React.Fragment>
@@ -75,4 +154,4 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(HomeComposition)
+)(withRouter(HomeComposition))
