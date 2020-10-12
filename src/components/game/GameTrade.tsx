@@ -16,7 +16,7 @@ const GameTrade: React.FC<Props> = ({ history }: Props) => {
     const _redData: Array<number> = [];
     const _blueData: Array<number> = [];
     history.forEach((x) => {
-      _labels.push(moment(x.date).format('HH:MM'));
+      _labels.push(moment(x.date).format('HH:mm'));
       _redData.push(x.supply_red / Math.pow(10, 18));
       _blueData.push(x.supply_blue / Math.pow(10, 18));
     });
