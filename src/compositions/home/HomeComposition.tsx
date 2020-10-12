@@ -39,25 +39,29 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
       <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
 	    <Container>
-        <div>
-          <div className='mt-50' />
-          <div className='ml-120 text-large'>Baseball’s famous “Dot Race”</div>
-          <div className='ml-120 text-medium text-red'>Now on Defi</div>
-          <div className='mb-30' />
-        </div>
-        <div className='home-team mb-50'>
-          <img className='home-team__background' src={RectChooseImage} alt='rectangle' />
-          <div className='center-h'>
-            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
-              <img src={ChooseBlueImage} alt='ChooseBlue' />
-            </IconButton>
-            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
-              <img src={ChooseRedImage} alt='ChooseRed' />
-            </IconButton>
+        <div className='home-start mt-100 mb-50'>
+          <div className='wp-50 mr-70'>
+            <div className='text-large'>Baseball’s famous “Dot Race”</div>
+            <div className='text-medium text-red mb-30'>Now on Defi</div>
+            <div className='text-small text-gray mb-50'>
+              <span>Two teams:   RED and BLUE.    Each team starts with a Total Supply of 1,000,000 Tokens.  No More can be minted, combined supply will always be exactly 2,000,000,  however </span>
+              <b>the supplies can be “re-balanced”  every 4 hours by anybody that calls the BATTLE function.</b>
+            </div>
+            <div className='flex-h'>
+              <IconButton className='mr-30' onClick={() => history.push('/dashboard')}>
+                <img src={ChooseBlueButtonImage} alt='button' />
+              </IconButton>
+              <IconButton onClick={() => history.push('/dashboard')}>
+                <img src={ChooseRedButtonImage} alt='button' />
+              </IconButton>
+            </div>
           </div>
-          <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
+          <div className='wp-50'>
+            <img src={SEO3Image} alt='desktop' width='100%' />
+          </div>
         </div>
-        <div className='home-stats mb-50'>
+        <br/>
+        <div className='home-stats mt-50'>
           <div className='mr-70'>
             <div className='text-small text-gray mb-5'>Game Started:</div>
             <div className='text-medium'>--:--:----</div>
@@ -75,7 +79,6 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
             <div className='text-medium text-red'>{(redTotalSupply / totalSupply * 100).toFixed(2)}%</div>
           </div>
         </div>
-        <br/>
         <div className='home-seo'>
           <div className='wp-50 mr-120'>
             <div className='text-large mb-30'>From idea to implementation</div>
@@ -110,24 +113,17 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           </div>
         </div>
 
-        <div className='home-seo'>
-          <div className='wp-50 mr-120'>
-            <div className='text-large mb-30'>How it looks <span className='text-red'>inside</span></div>
-            <div className='text-small text-gray mb-50'>
-              In order to start playing, you just need to choose a Blue or Red team, follow the schedule on dashboard  and win!
-            </div>
-            <div className='flex-h'>
-              <IconButton className='mr-30' onClick={() => history.push('/dashboard')}>
-                <img src={ChooseBlueButtonImage} alt='button' />
-              </IconButton>
-              <IconButton onClick={() => history.push('/dashboard')}>
-                <img src={ChooseRedButtonImage} alt='button' />
-              </IconButton>
-            </div>
+        <div className='home-team mt-100'>
+          <img className='home-team__background' src={RectChooseImage} alt='rectangle' />
+          <div className='center-h'>
+            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
+              <img src={ChooseBlueImage} alt='ChooseBlue' />
+            </IconButton>
+            <IconButton className='home-team__button' onClick={() => history.push('/dashboard')}>
+              <img src={ChooseRedImage} alt='ChooseRed' />
+            </IconButton>
           </div>
-          <div className='wp-50'>
-            <img src={SEO3Image} alt='desktop' />
-          </div>
+          <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
         </div>
         <div className='mb-100' />
         <br />

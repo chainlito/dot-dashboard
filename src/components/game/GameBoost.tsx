@@ -43,11 +43,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
 
   return (
     <div className='game-boost'>
-      <div className='text-medium mb-20'>Make Your Rate</div>
-      <div className='text-small text-gray mb-50'>
-        Use 5 points to strengthen your team or weaken the opposing team
-      </div>
-      <div className='flex-h center-h mb-20'>
+      <div className='flex-h center-h mt-20 mb-20'>
         <IconButton onClick={handleClickBoostDown} disabled={boost === BOOST.REDUCE}>
           <img src={BoostDownImage} alt='BoostDown' />
         </IconButton>
@@ -91,7 +87,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
         <img src={RebaseImage} alt='rebase' />
       </IconButton>
       
-      <div className='mb-50' />
+      <div className='mb-20' />
     </div>
   )
 }

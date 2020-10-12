@@ -56,7 +56,7 @@ const GameComposition: React.FC<Props> = ({
   if (!account) {
     return (
       <React.Fragment>
-        <img className='img-background' src={BackgroundImage} alt='background' />
+        <img className='img-background fit' src={BackgroundImage} alt='background' />
         <Header />
         <Container>
           <div className='screen-center flex-v'>
