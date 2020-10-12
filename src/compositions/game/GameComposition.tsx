@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Header, Container, Footer, GameBoost, GameTrade, GameHistory, ConnectWalletButton } from 'components';
 import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
-import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown } from 'store/game/gameActions';
+import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown, gameRebase } from 'store/game/gameActions';
 import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply, selectGameRebaseHistory } from 'store/game/gameSelector';
 import { web3client } from 'lib';
 
@@ -22,6 +22,7 @@ interface DispatchFromProps {
   boostLoadAllowance: typeof gameBoostLoadAllowance;
   boostUp: typeof gameBoostUp;
   boostDown: typeof gameBoostDown;
+  rebase: typeof gameRebase;
 }
 interface OwnProps {}
 
@@ -32,6 +33,7 @@ const GameComposition: React.FC<Props> = ({
   boostLoadAllowance,
   boostUp,
   boostDown,
+  rebase,
 
   redTotalSupply,
   blueTotalSupply,
@@ -80,12 +82,13 @@ const GameComposition: React.FC<Props> = ({
           <span className='text-gray'> | Days to End Game: </span><b>120</b>
         </div>
         <div className='flex-h mt-20'>
-          <GameTrade />
+          <GameTrade history={rebaseHistory} />
           <GameBoost
             boostRate={boostRate}
             rebaseLag={rebaseLag}
             boostUp={boostUp}
             boostDown={boostDown}
+            rebase={rebase}
           />
         </div>
         <div className='mt-20' />
@@ -118,6 +121,7 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
     boostLoadAllowance: () => dispatch(gameBoostLoadAllowance()),
     boostUp: () => dispatch(gameBoostUp()),
     boostDown: () => dispatch(gameBoostDown()),
+    rebase: () => dispatch(gameRebase()),
   }
 }
 

@@ -41,8 +41,8 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
 	    <Container>
         <div>
           <div className='mt-50' />
-          <div className='ml-120 text-large'>The same game</div>
-          <div className='ml-120 text-medium text-red'>only on your computer!</div>
+          <div className='ml-120 text-large'>Baseball’s famous “Dot Race”</div>
+          <div className='ml-120 text-medium text-red'>Now on Defi</div>
           <div className='mb-30' />
         </div>
         <div className='home-team mb-50'>

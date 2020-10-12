@@ -1,7 +1,10 @@
 export interface RebaseHistory {
-  timestamp: string;
-  percent: number;
-  boostCount: number;
-  redSupply: number;
-  blueSupply: number;
+  _id: number;
+  date: string;
+  percentage: number;
+  boost_count: number;
+  supply_red: number;
+  supply_blue: number;
+  price_red: number;
+  price_blue: number;
 }

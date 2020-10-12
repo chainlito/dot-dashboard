@@ -39,3 +39,7 @@ export const gameLoadHistorySuccess = (payload: Array<RebaseHistory>) => ({
   type: ActionType.GAME_LOAD_REBASE_HISTORY_SUCCESS,
   payload,
 })
+
+export const gameRebase = () => ({
+  type: ActionType.GAME_REBASE,
+})

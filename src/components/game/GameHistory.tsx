@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryPie } from 'victory';
+import Config from 'config';
 import { RebaseHistory } from 'types';
 import moment from 'moment';
 import {
@@ -11,6 +11,8 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
+
+import { numberWithDecimals } from 'utils';
 
 interface Props {
   redSupply: number;
@@ -36,17 +38,21 @@ const GameHistory: React.FC<Props> = ({
                 <TableCell># of user modifications</TableCell>
                 <TableCell>Supply Red</TableCell>
                 <TableCell>Supply Blue</TableCell>
+                <TableCell>Price Red</TableCell>
+                <TableCell>Price Blue</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rebaseHistory.map((history, index) => (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">{index + 1}</TableCell>
-                  <TableCell>{moment.unix(parseInt(history.timestamp)).format('YYYY/MM/DD HH:MM')}</TableCell>
-                  <TableCell>{/*history.percent*/}-%</TableCell>
-                  <TableCell>{history.boostCount}</TableCell>
-                  <TableCell>{/*numberWithDecimals(history.redSupply, Config.RedToken.decimals, Config.Utils.decimals)*/}-</TableCell>
-                  <TableCell>{/*numberWithDecimals(history.blueSupply, Config.BlueToken.decimals, Config.Utils.decimals)*/}-</TableCell>
+                  <TableCell>{moment(history.date).format('YYYY/MM/DD HH:MM')}</TableCell>
+                  <TableCell>{history.percentage}%</TableCell>
+                  <TableCell>{history.boost_count}</TableCell>
+                  <TableCell>{numberWithDecimals(history.supply_red, Config.RedToken.decimals, Config.Utils.decimals)}</TableCell>
+                  <TableCell>{numberWithDecimals(history.supply_blue, Config.BlueToken.decimals, Config.Utils.decimals)}</TableCell>
+                  <TableCell>-</TableCell>
+                  <TableCell>-</TableCell>
                 </TableRow>
               ))}
             </TableBody>

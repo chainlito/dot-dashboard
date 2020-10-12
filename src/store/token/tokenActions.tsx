@@ -14,9 +14,3 @@ export const setTotalSupply = (
         payload,
     };
 };
-
-export const tokenRebase = () => {
-    return {
-        type: ActionType.TOKEN_REBASE,
-    }
-}

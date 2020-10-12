@@ -1,7 +1,7 @@
 import { put, takeLatest, fork, select } from 'redux-saga/effects';
-import { ActionType, RebaseHistory } from 'types';
+import { ActionType, RebaseHistory, RootState } from 'types';
 
-import { web3client, ethscanclient } from 'lib';
+import { web3client, apiclient } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
 import Config from 'config';
 import { gameBoostApproveSuccess, gameLoadRedTotalSupplySuccess, gameLoadBlueTotalSupplySuccess, gameLoadHistorySuccess } from './gameActions';
@@ -66,7 +66,7 @@ function* loadTotalSupply() {
 
 function* loadRebaseHistory() {
   try {
-    const txlist: Array<any> = yield ethscanclient.getTransactionsList(Config.Orchestrator.address);
+    /*const txlist: Array<any> = yield ethscanclient.getTransactionsList(Config.Orchestrator.address);
     const history: Array<RebaseHistory> = [];
     let count = 0;
     for(let i = 0; i < txlist.length; i ++) {
@@ -84,7 +84,25 @@ function* loadRebaseHistory() {
         });
         count = 0;
       }
-    }
+    }*/
+    const history: Array<RebaseHistory> = yield apiclient.getHistory();
+    yield put(gameLoadHistorySuccess(history));
+  } catch(err) {
+    console.error(err);
+  }
+}
+
+function* rebase() {
+  try {
+    const state: RootState = yield select();
+    const account = yield selectAccount(state);
+    if (!account) return;
+
+    const rebaseLag = yield web3client.getRebaseLag();
+    yield web3client.rebase(account.address);
+    yield apiclient.pushHistory(rebaseLag);
+
+    const history: Array<RebaseHistory> = yield apiclient.getHistory();
     yield put(gameLoadHistorySuccess(history));
   } catch(err) {
     console.error(err);
@@ -99,6 +117,7 @@ function* sagaWatcher() {
   yield takeLatest(ActionType.GAME_LOAD_TOTAL_SUPPLY as any, loadTotalSupply);
   yield takeLatest(ActionType.INIT_STORE as any, loadTotalSupply);
   yield takeLatest(ActionType.INIT_STORE as any, loadRebaseHistory);
+  yield takeLatest(ActionType.GAME_REBASE as any, rebase);
 }
 
 export default [

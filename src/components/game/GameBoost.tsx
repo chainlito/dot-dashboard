@@ -18,9 +18,10 @@ interface Props {
   rebaseLag: number;
   boostUp: () => void;
   boostDown: () => void;
+  rebase: () => void;
 }
 
-const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown }: Props) => {
+const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, rebase }: Props) => {
   const [boost, setBoost] = React.useState<BOOST>(BOOST.NOBOOST);
 
   const handleClickBoostUp = () => {
@@ -85,6 +86,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown }
       <div className='text-small text-gray'>Next rate is {((boostRate + 1) * 0.1).toFixed(1)}ETH</div>
       <IconButton
         className='mt-20'
+        onClick={() => rebase()}
       >
         <img src={RebaseImage} alt='rebase' />
       </IconButton>

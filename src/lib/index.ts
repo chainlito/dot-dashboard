@@ -3,3 +3,4 @@ export { default as stockclient } from './tsla';
 export { default as dexclient } from './dex';
 export { default as coingeckoclient } from './coingecko';
 export { default as ethscanclient } from './ethscan';
+export { default as apiclient } from './api';
