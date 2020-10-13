@@ -9,6 +9,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableFooter,
+  TablePagination,
   Paper,
 } from '@material-ui/core';
 
@@ -21,10 +23,19 @@ interface Props {
 }
 
 const GameHistory: React.FC<Props> = ({
-  redSupply,
-  blueSupply,
   rebaseHistory,
 }: Props) => {
+  const [page, setPage] = React.useState<number>(0);
+  const [rows, setRows] = React.useState<Array<RebaseHistory>>([]);
+
+  React.useEffect(() => {
+    const _rows = rebaseHistory.sort((a, b) => { return moment(b.date).unix() -  moment(a.date).unix() });
+    console.log(_rows);
+    setRows(_rows);
+  }, [rebaseHistory]);
+
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => setPage(newPage);
+
   return (
     <div className='flex-h'>
       {rebaseHistory && rebaseHistory.length > 0 ? (
@@ -43,7 +54,7 @@ const GameHistory: React.FC<Props> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {rebaseHistory.map((history, index) => (
+              {rows.slice(page * 10, (page + 1) * 10).map((history, index) => (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">{index + 1}</TableCell>
                   <TableCell>{moment(history.date).format('YYYY/MM/DD HH:mm')}</TableCell>
@@ -56,6 +67,15 @@ const GameHistory: React.FC<Props> = ({
                 </TableRow>
               ))}
             </TableBody>
+            <TableFooter>
+              <TablePagination
+                rowsPerPageOptions={[10]}
+                rowsPerPage={10}
+                page={page}
+                count={rebaseHistory.length}
+                onChangePage={handleChangePage}
+              />
+            </TableFooter>
           </Table>
         </TableContainer>
       ) : (
