@@ -118,7 +118,6 @@ async function getBoostRate(): Promise<number> {
 
 async function getRebaseLag(): Promise<number> {
   const result = await policyContract.methods.getRebaseLag().call();
-  console.log(result);
   return parseInt(result);
 }
 

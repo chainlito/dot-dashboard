@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 
 import { numberWithDecimals } from 'utils';
+import { ethscanclient } from 'lib';
 
 interface Props {
   redSupply: number;
@@ -30,7 +31,15 @@ const GameHistory: React.FC<Props> = ({
 
   React.useEffect(() => {
     const _rows = rebaseHistory.sort((a, b) => { return moment(b.date).unix() -  moment(a.date).unix() });
-    console.log(_rows);
+    ethscanclient.getTransactionsList('0x97aeF1C61940231A677f93d30D3bDFD02Cd7F151').then(txList => {
+      let boostCount = 0;
+  
+      for (let i = 1; i < txList.length; i ++) {
+        if (txList[i].input === '0xaf14052c') break;
+        if (txList[i].input === '0x42fceaba' || txList[i].input === '0x496fcd3e') boostCount ++;
+      }
+      console.log(boostCount);
+    });
     setRows(_rows);
   }, [rebaseHistory]);
 
@@ -56,7 +65,7 @@ const GameHistory: React.FC<Props> = ({
             <TableBody>
               {rows.slice(page * 10, (page + 1) * 10).map((history, index) => (
                 <TableRow key={index}>
-                  <TableCell component="th" scope="row">{index + 1}</TableCell>
+                  <TableCell component="th" scope="row">{history._id}</TableCell>
                   <TableCell>{moment(history.date).format('YYYY/MM/DD HH:mm')}</TableCell>
                   <TableCell>{history.percentage}%</TableCell>
                   <TableCell>{history.boost_count}</TableCell>
@@ -68,13 +77,15 @@ const GameHistory: React.FC<Props> = ({
               ))}
             </TableBody>
             <TableFooter>
-              <TablePagination
-                rowsPerPageOptions={[10]}
-                rowsPerPage={10}
-                page={page}
-                count={rebaseHistory.length}
-                onChangePage={handleChangePage}
-              />
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[10]}
+                  rowsPerPage={10}
+                  page={page}
+                  count={rebaseHistory.length}
+                  onChangePage={handleChangePage}
+                />
+              </TableRow>
             </TableFooter>
           </Table>
         </TableContainer>

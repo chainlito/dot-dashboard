@@ -73,13 +73,12 @@ const GameComposition: React.FC<Props> = ({
       <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
-        <div className='flex-h mt-70'>
-          <div className='text-large'>Dashboard</div>
-        </div>
-        <div className='text-small mt-30'>
-          <span className='text-gray'>Game started: </span><b>01.01.2020</b> &nbsp;
-          <span className='text-gray'> | Today's Highest Rate: </span><b className='text-blue'>$ 791</b> &nbsp;
-          <span className='text-gray'> | Days to End Game: </span><b>120</b>
+        <div className='text-small mt-70'>
+          <span className='text-red'>RED price: </span><b>$1.04</b> &nbsp;| &nbsp;
+          <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
+          <span className='text-red'>RED supply: </span><b>1200000</b> &nbsp;| &nbsp;
+          <span className='text-blue'>BLUE supply: </span><b>800000</b> &nbsp;| &nbsp;
+          <span className='text-green'>Next rebase: </span><b>3:26:56</b>
         </div>
         <div className='flex-h mt-20'>
           <GameTrade history={rebaseHistory} />

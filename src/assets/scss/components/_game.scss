@@ -54,6 +54,11 @@
     &__pay {
       width: 100%;
     }
+
+    &__updown {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &-history {

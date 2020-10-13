@@ -22,7 +22,7 @@ const getTransactionsCount = async (address: string) => {
 const getTransactionsList = async (address: string) => {
   const response = await axios({
     method: 'GET',
-    url: `${API_URL}?module=account&action=txlist&address=${address}&sort=asc&apikey=${API_KEY}&page=${1}&offset=${50}`
+    url: `${API_URL}?module=account&action=txlist&address=${address}&sort=desc&apikey=${API_KEY}&page=${1}&offset=${50}`
   });
   return response.data.result;
 }

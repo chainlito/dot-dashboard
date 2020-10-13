@@ -5,7 +5,6 @@ import ModifyImage from 'assets/img/buttons/Modify.png';
 import RebaseImage from 'assets/img/buttons/Rebase.png';
 import BoostDownImage from 'assets/img/buttons/BoostDown.png';
 import BoostUpImage from 'assets/img/buttons/BoostUp.png';
-import ProgressImage from 'assets/img/progress.png';
 
 enum BOOST {
   REDUCE = -1,
@@ -25,7 +24,6 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
   const [boost, setBoost] = React.useState<BOOST>(BOOST.NOBOOST);
 
   const handleClickBoostUp = () => {
-    console.log(rebaseLag);
     if (rebaseLag >= 15) {
       alert('Boost rate is over max.');
     } else {
@@ -43,13 +41,10 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
 
   return (
     <div className='game-boost'>
-      <div className='flex-h center-h mt-20 mb-20'>
+      <div className='game-boost__updown mt-20 mb-20'>
         <IconButton onClick={handleClickBoostDown} disabled={boost === BOOST.REDUCE}>
           <img src={BoostDownImage} alt='BoostDown' />
         </IconButton>
-        <div className='center-v'>
-          <img src={ProgressImage} alt='progress' />
-        </div>
         <IconButton onClick={handleClickBoostUp} disabled={boost === BOOST.RAISE}>
           <img src={BoostUpImage} alt='BoostDown' />
         </IconButton>
@@ -62,9 +57,8 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
           <div className='text-center text-tiny op-50 mt-10'>Raise the bid</div>
         </div>*/}
       </div>
-      <div className='mt-30 text-small'>Current rebase % is {rebaseLag}%</div>
-      <div className='text-small text-gray'>Max rebase % is {15}%</div>
-      <div className='text-small text-gray'>Min rebase % is {5}%</div>
+      <div className='mt-30 text-small'>Current Boost = {rebaseLag}%</div>
+      <div className='text-small text-gray'>Min 5% ~ Max 15%</div>
       
       <IconButton
         className='mt-20'
@@ -78,8 +72,8 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
         <img src={ModifyImage} alt='modify' />
       </IconButton>
 
-      <div className='mt-30 text-small'>Current rate is {(boostRate * 0.1).toFixed(1)}ETH</div>
-      <div className='text-small text-gray'>Next rate is {((boostRate + 1) * 0.1).toFixed(1)}ETH</div>
+      <div className='mt-30 text-small'>Current rate = {(boostRate * 0.1).toFixed(1)}ETH</div>
+      <div className='text-small text-gray'>Next rate = {((boostRate + 1) * 0.1).toFixed(1)}ETH</div>
       <IconButton
         className='mt-20'
         onClick={() => rebase()}
