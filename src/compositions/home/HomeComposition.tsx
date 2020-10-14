@@ -11,8 +11,8 @@ import { selectGameBlueTotalSupply, selectGameRedTotalSupply } from 'store/game/
 import BackgroundImage from 'assets/img/background.png';
 import ChooseRedImage from 'assets/img/buttons/ChooseRed.png';
 import ChooseBlueImage from 'assets/img/buttons/ChooseBlue.png';
-import ChooseRedButtonImage from 'assets/img/buttons/ChooseRedButton.png';
-import ChooseBlueButtonImage from 'assets/img/buttons/ChooseBlueButton.png';
+import StartRacingImage from 'assets/img/buttons/StartRacing.png';
+import StartFarmingImage from 'assets/img/buttons/StartFarming.png';
 import RectChooseImage from 'assets/img/layouts/RectChoose.png';
 import SEO1Image from 'assets/img/seo/SEO1.png';
 import SEO2Image from 'assets/img/seo/SEO2.png';
@@ -49,10 +49,10 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
             </div>
             <div className='flex-h'>
               <IconButton className='mr-30' onClick={() => history.push('/dashboard')}>
-                <img src={ChooseBlueButtonImage} alt='button' />
+                <img src={StartRacingImage} alt='button' />
               </IconButton>
               <IconButton onClick={() => history.push('/dashboard')}>
-                <img src={ChooseRedButtonImage} alt='button' />
+                <img src={StartFarmingImage} alt='button' />
               </IconButton>
             </div>
           </div>

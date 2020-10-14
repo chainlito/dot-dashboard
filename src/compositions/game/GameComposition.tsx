@@ -7,10 +7,13 @@ import { RootState } from 'types';
 import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown, gameRebase } from 'store/game/gameActions';
 import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply, selectGameRebaseHistory } from 'store/game/gameSelector';
 import { web3client } from 'lib';
+import { IconButton } from '@material-ui/core';
+import { numberWithDecimals } from 'utils';
 
 import BackgroundImage from 'assets/img/background.png';
-import { Button } from '@material-ui/core';
-import { numberWithDecimals } from 'utils';
+import GetRedImage from 'assets/img/buttons/GetRed.png';
+import GetBlueImage from 'assets/img/buttons/GetBlue.png';
+import SwapRedBlueImage from 'assets/img/buttons/SwapRedBlue.png';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
@@ -75,34 +78,36 @@ const GameComposition: React.FC<Props> = ({
       <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
-        <div className='game-header'>
-          <Button
-            variant='contained'
-            className='btn-primary'
+        <div className='game-header mt-50'>
+          <IconButton
             href='#'
             target='_blank'
-          >Swap RED/BLUE</Button>
-          <Button
-            variant='contained'
-            className='btn-primary mr-20'
+          >
+            <img src={SwapRedBlueImage} alt='Swap Red/Blue' />
+          </IconButton>
+          <IconButton
+            className='mr-20'
             href='#'
             target='_blank'
-          >Get BLUE</Button>
-          <Button
-            variant='contained'
-            className='btn-primary mr-20'
+          >
+            <img src={GetBlueImage} alt='Get Blue' />
+          </IconButton>
+          <IconButton
+            className='mr-20'
             href='#'
             target='_blank'
-          >Get RED</Button>
+          >
+            <img src={GetRedImage} alt='Get Red' />
+          </IconButton>
         </div>
-        <div className='text-small mt-70'>
+        <div className='text-small mt-20'>
           <span className='text-red'>RED price: </span><b>$1.04</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
           <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-green'>Next rebase: </span><b>3:26:56</b>
         </div>
-        <div className='flex-h mt-20'>
+        <div className='flex-h mt-30'>
           <GameTrade history={rebaseHistory} />
           <GameBoost
             boostRate={boostRate}
