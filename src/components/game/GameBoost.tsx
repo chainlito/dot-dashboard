@@ -48,14 +48,6 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
         <IconButton onClick={handleClickBoostUp} disabled={boost === BOOST.RAISE}>
           <img src={BoostUpImage} alt='BoostDown' />
         </IconButton>
-        {/*<div className={`game-boost__select${boost === BOOST.REDUCE ? ' selected' : ''}`} onClick={handleClickBoostDown}>
-          <div className='text-center text-medium mt-40'>- 1</div>
-          <div className='text-center text-tiny op-50 mt-10'>Reduce the bid</div>
-        </div>
-        <div className={`game-boost__select${boost === BOOST.RAISE ? ' selected' : ''}`} onClick={handleClickBoostUp}>
-          <div className='text-center text-medium mt-40'>+ 1</div>
-          <div className='text-center text-tiny op-50 mt-10'>Raise the bid</div>
-        </div>*/}
       </div>
       <div className='mt-30 text-small'>Current Boost = {rebaseLag}%</div>
       <div className='text-small text-gray'>Min 5% ~ Max 15%</div>

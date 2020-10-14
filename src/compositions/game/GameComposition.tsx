@@ -49,7 +49,7 @@ const GameComposition: React.FC<Props> = ({
     const timeInterval = setInterval(() => {
       web3client.getBoostRate().then(res => setBoostRate(res));
       web3client.getRebaseLag().then(res => setRebaseLag(res));
-    }, 60000);
+    }, 30000);
     return () => clearInterval(timeInterval);
   });
 
