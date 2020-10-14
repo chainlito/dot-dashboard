@@ -83,31 +83,31 @@ const GameComposition: React.FC<Props> = ({
             href='#'
             target='_blank'
           >
-            <img src={SwapRedBlueImage} alt='Swap Red/Blue' />
+            <img src={SwapRedBlueImage} height={40} alt='Swap Red/Blue' />
           </IconButton>
           <IconButton
             className='mr-20'
             href='#'
             target='_blank'
           >
-            <img src={GetBlueImage} alt='Get Blue' />
+            <img src={GetBlueImage} height={40} alt='Get Blue' />
           </IconButton>
           <IconButton
             className='mr-20'
             href='#'
             target='_blank'
           >
-            <img src={GetRedImage} alt='Get Red' />
+            <img src={GetRedImage} height={40} alt='Get Red' />
           </IconButton>
         </div>
-        <div className='text-small mt-20'>
+        <div className='text-small mt-30'>
           <span className='text-red'>RED price: </span><b>$1.04</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
           <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-green'>Next rebase: </span><b>3:26:56</b>
         </div>
-        <div className='flex-h mt-30'>
+        <div className='flex-h mt-20'>
           <GameTrade history={rebaseHistory} />
           <GameBoost
             boostRate={boostRate}
