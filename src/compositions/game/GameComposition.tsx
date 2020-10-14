@@ -9,6 +9,8 @@ import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSu
 import { web3client } from 'lib';
 
 import BackgroundImage from 'assets/img/background.png';
+import { Button } from '@material-ui/core';
+import { numberWithDecimals } from 'utils';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
@@ -73,11 +75,31 @@ const GameComposition: React.FC<Props> = ({
       <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
+        <div className='game-header'>
+          <Button
+            variant='contained'
+            className='btn-primary'
+            href='#'
+            target='_blank'
+          >Swap RED/BLUE</Button>
+          <Button
+            variant='contained'
+            className='btn-primary mr-20'
+            href='#'
+            target='_blank'
+          >Get BLUE</Button>
+          <Button
+            variant='contained'
+            className='btn-primary mr-20'
+            href='#'
+            target='_blank'
+          >Get RED</Button>
+        </div>
         <div className='text-small mt-70'>
           <span className='text-red'>RED price: </span><b>$1.04</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
-          <span className='text-red'>RED supply: </span><b>1200000</b> &nbsp;| &nbsp;
-          <span className='text-blue'>BLUE supply: </span><b>800000</b> &nbsp;| &nbsp;
+          <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
+          <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-green'>Next rebase: </span><b>3:26:56</b>
         </div>
         <div className='flex-h mt-20'>
