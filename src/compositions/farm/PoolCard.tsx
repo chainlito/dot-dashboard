@@ -16,8 +16,11 @@ type Props = OwnProps & RouteComponentProps;
 
 const PoolCard: React.FC<Props> = ({ stakingToken, picture, poolUrl, apy, history, isHigh = false, isRed }: Props) => {
   return (
-    <Card className={`card card-h medium${isRed ? ' red' : ' blue'}${isHigh ? ' raised' : ''} transparent`}>
+    <Card className={`card card-h medium${isRed ? ' red' : ' blue'} transparent`}>
       <CardContent>
+        {isHigh ? (
+          <div className='badge'>4X</div>
+        ) : null}
         <div className='section'>
           <div className='circle'>
             <img className="logo-image" src={picture} alt='icon' />
