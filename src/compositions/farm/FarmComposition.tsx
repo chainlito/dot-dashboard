@@ -113,9 +113,9 @@ const FarmComposition = () => {
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
             <PoolCard
-              stakingToken={Config.BlueLpToken}
+              stakingToken={Config.RedLpToken}
               picture={Farm5Icon}
-              poolUrl='/farm-bluelp'
+              poolUrl='/farm-redlp'
               apy={pool1APY}
               isRed={true}
               isHigh />

@@ -47,8 +47,8 @@ const Pool5Composition: React.FC<Props> = ({
     setStakeTokenInfo(Config.RedLpToken);
     setPoolContract(web3client.pool5Contract);
     setStakeTokneContract(web3client.redLpTokenContract);
-    setRewardTokenInfo(Config.RedLpToken);
-    setRewardTokenContract(web3client.blueTokenContract);
+    setRewardTokenInfo(Config.RedToken);
+    setRewardTokenContract(web3client.redTokenContract);
     loadAllowance();
     loadPeriodFinish();
   });
