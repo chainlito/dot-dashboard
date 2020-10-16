@@ -36,7 +36,7 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 			web3client.poolGetEarned(web3client.pool2Contract, account.address)
 				.then(res => setEarned(res));
 		}
-    coingeckoclient.getUniPrice().then(res => setToken1Price(res));
+    coingeckoclient.getLinkPrice().then(res => setToken1Price(res));
 	});
 
   useEffect(() => {
@@ -53,11 +53,11 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 	
   return (
     <React.Fragment>
-      <h2 className='mb-20 text-medium text-center'>{Config.UniToken.name} staking pool</h2>
+      <h2 className='mb-20 text-medium text-center'>{Config.LinkToken.name} staking pool</h2>
 	  	<div className='card card-h white'>
       	<div className='text-small mb-10'>PRICES <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>
 	  		<div className='flex-h'>
-      		<div className='text-tiny wp-50'>{`1 ${Config.UniToken.symbol} =`}</div>
+      		<div className='text-tiny wp-50'>{`1 ${Config.LinkToken.symbol} =`}</div>
 	  			<div className='text-tiny text-gray'> {`$ ${numberWithDecimals(token1Price, 0, 2)}`}</div>
 	  		</div>
 				<div className='flex-h'>
@@ -71,9 +71,9 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 						There are total &nbsp;
 					</div>
 					<div className='text-tiny text-gray'>
-						{`${numberWithDecimals(totalStaked, Config.UniToken.decimals, Config.Utils.decimals)} ${Config.UniToken.symbol} staked in ${Config.BlueToken.symbol}'s ${Config.UniToken.symbol} staking pool.`}
+						{`${numberWithDecimals(totalStaked, Config.LinkToken.decimals, Config.Utils.decimals)} ${Config.LinkToken.symbol} staked in ${Config.BlueToken.symbol}'s ${Config.LinkToken.symbol} staking pool.`}
 						<br/>
-						{`= $ ${numberWithDecimals(totalStaked * token1Price, Config.UniToken.decimals, 2)}`}
+						{`= $ ${numberWithDecimals(totalStaked * token1Price, Config.LinkToken.decimals, 2)}`}
 					</div>
 				</div>
 				<div className='flex-h'>
@@ -81,9 +81,9 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 						You are staking &nbsp;
 					</div>
 					<div className='text-tiny text-gray'>
-						{`${numberWithDecimals(staked, Config.UniToken.decimals, Config.Utils.decimals)} ${Config.UniToken.symbol} (${(staked / totalStaked * 100).toFixed(2)}% of the pool)`}
+						{`${numberWithDecimals(staked, Config.LinkToken.decimals, Config.Utils.decimals)} ${Config.LinkToken.symbol} (${(staked / totalStaked * 100).toFixed(2)}% of the pool)`}
 						<br/>
-						{`= $ ${numberWithDecimals(staked * token1Price, Config.UniToken.decimals, 2)}`}
+						{`= $ ${numberWithDecimals(staked * token1Price, Config.LinkToken.decimals, 2)}`}
 					</div>
 				</div>
 				<br/>

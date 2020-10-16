@@ -72,7 +72,7 @@ const FarmComposition = () => {
               Select a farm
             </div>
             <div className='center-h text-small text-gray'>
-              Earn RED/BLUE tokens by providing liquidity
+              Earn BLUE tokens by providing liquidity
             </div>
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
@@ -83,34 +83,11 @@ const FarmComposition = () => {
               isRed={false}
               isHigh />
             <PoolCard
-              stakingToken={Config.BlueLpToken}
-              picture={Farm5Icon}
-              poolUrl='/farm-bluelp'
-              apy={pool1APY}
-              isRed={true}
-              isHigh />
-          </div>
-          <div className='center-h wp-100 mt-30 home-container'>
-            <PoolCard
               stakingToken={Config.UniToken}
               picture={Farm2Icon}
               poolUrl='/farm-uni'
               apy={pool1APY}
               isRed={false}
-            />
-            <PoolCard
-              stakingToken={Config.YtslaToken}
-              picture={Farm6Icon}
-              poolUrl='/farm-ytsla'
-              apy={pool1APY}
-              isRed={true}
-            />
-            <PoolCard
-              stakingToken={Config.MemeToken}
-              picture={Farm7Icon}
-              poolUrl='/farm-meme'
-              apy={pool1APY}
-              isRed={true}
             />
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
@@ -127,6 +104,36 @@ const FarmComposition = () => {
               poolUrl='/farm-link'
               apy={pool1APY}
               isRed={false}
+            />
+          </div>
+
+
+          <div className='center-h text-small text-gray mt-100 mb-50'>
+            Earn RED tokens by providing liquidity
+          </div>
+          <div className='center-h wp-100 mt-30 home-container'>
+            <PoolCard
+              stakingToken={Config.BlueLpToken}
+              picture={Farm5Icon}
+              poolUrl='/farm-bluelp'
+              apy={pool1APY}
+              isRed={true}
+              isHigh />
+            <PoolCard
+              stakingToken={Config.YtslaToken}
+              picture={Farm6Icon}
+              poolUrl='/farm-ytsla'
+              apy={pool1APY}
+              isRed={true}
+            />
+          </div>
+          <div className='center-h wp-100 mt-30 home-container'>
+            <PoolCard
+              stakingToken={Config.MemeToken}
+              picture={Farm7Icon}
+              poolUrl='/farm-meme'
+              apy={pool1APY}
+              isRed={true}
             />
             <PoolCard
               stakingToken={Config.CoreToken}

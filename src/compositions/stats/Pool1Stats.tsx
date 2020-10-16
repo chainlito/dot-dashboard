@@ -35,7 +35,7 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
       web3client.poolGetEarned(web3client.pool1Contract, account.address)
         .then(res => setEarned(res));
     }
-    coingeckoclient.getMemePrice().then(res => setToken1Price(res));
+    //coingeckoclient.getMemePrice().then(res => setToken1Price(res));
   });
   useEffect(() => {
     if (token1Price > 0) {
@@ -51,83 +51,83 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
 
   return (
     <React.Fragment>
-      <h2 className='mb-20 ystatstitle'>{Config.MemeToken.name} staking pool</h2>
-	    <div className='cardoutline'>
-        <div className='ystatshead'>PRICES <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>
+      <h2 className='mb-20 text-medium text-center'>{Config.BlueLpToken.name} staking pool</h2>
+	  	<div className='card card-h white'>
+      	<div className='text-small mb-10'>PRICES <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>
+	  		<div className='flex-h'>
+      		<div className='text-tiny wp-50'>{`1 ${Config.BlueLpToken.symbol} =`}</div>
+	  			<div className='text-tiny text-gray'> {`$ ${numberWithDecimals(token1Price, 0, 2)}`}</div>
+	  		</div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`1 ${Config.BlueToken.symbol} = `}</div>
+					<div className='text-tiny text-gray'> {`$ ${numberWithDecimals(tokenPrice, 0, 2)}`}</div>
+				</div>
+				<br/>
+				<div className='text-small mb-10'>STAKING <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>	 
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>
+						There are total &nbsp;
+					</div>
+					<div className='text-tiny text-gray'>
+						{`${numberWithDecimals(totalStaked, Config.BlueLpToken.decimals, Config.Utils.decimals)} ${Config.BlueLpToken.symbol} staked in ${Config.BlueToken.symbol}'s ${Config.BlueLpToken.symbol} staking pool.`}
+						<br/>
+						{`= $ ${numberWithDecimals(totalStaked * token1Price, Config.BlueLpToken.decimals, 2)}`}
+					</div>
+				</div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>
+						You are staking &nbsp;
+					</div>
+					<div className='text-tiny text-gray'>
+						{`${numberWithDecimals(staked, Config.BlueLpToken.decimals, Config.Utils.decimals)} ${Config.BlueLpToken.symbol} (${(staked / totalStaked * 100).toFixed(2)}% of the pool)`}
+						<br/>
+						{`= $ ${numberWithDecimals(staked * token1Price, Config.BlueLpToken.decimals, 2)}`}
+					</div>
+				</div>
+				<br/>
+	  		<div className='text-small mb-10'>{Config.BlueToken.symbol} REWARDS <span className='ybullets'> • • • • • • • • • • • • • • • • • • •</span></div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`Claimable rewards`}</div>
+					<div className='text-tiny text-gray'>
+						{`${numberWithDecimals(earned, Config.BlueToken.decimals, Config.Utils.decimals)} ${Config.BlueToken.symbol} = $${numberWithDecimals(earned * tokenPrice, Config.BlueToken.decimals, 2)}`}
+					</div>
+				</div>
 	      <div className='flex-h'>
-          <div className='datasplit'>{`1 ${Config.MemeToken.symbol} =`}</div>
-	        <div className='blackdata'> {`$ ${numberWithDecimals(token1Price, 0, 2)}`}</div>
-	      </div>
-	      <div className='flex-h'>
-          <div className='datasplit'>{`1 ${Config.RedToken.symbol} =`}</div>
-	        <div className='blackdata'> {`$ ${numberWithDecimals(tokenPrice, 0, 2)}`}</div>
-	      </div>
-        <br/>
-        <div className='ystatshead'>STAKING <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>	 
-	      <div className='flex-h'>
-          <div className='datasplit'>
-            There are total &nbsp;
-          </div>
-          <div className='blackdata'>
-            {`${numberWithDecimals(totalStaked, Config.MemeToken.decimals, Config.Utils.decimals)} ${Config.MemeToken.symbol} staked in ${Config.RedToken.symbol}'s ${Config.MemeToken.symbol} staking pool.`}
-            <br/>
-            {`= $ ${numberWithDecimals(totalStaked * token1Price, Config.MemeToken.decimals, 2)}`}
-          </div>
-	      </div>
-	      <div className='flex-h'>
-          <div className='datasplit'>
-            You are staking &nbsp;
-		      </div>
-		      <div className='blackdata'>
-            {`${numberWithDecimals(staked, Config.MemeToken.decimals, Config.Utils.decimals)} ${Config.MemeToken.symbol} (${(staked / totalStaked * 100).toFixed(2)}% of the pool)`}
-		        <br/>
-		        {`= $ ${numberWithDecimals(staked * token1Price, Config.MemeToken.decimals, 2)}`}
-          </div>
-	      </div>
-        <br/>
-	      <div className='ystatshead'>{Config.RedToken.symbol} REWARDS <span className='ybullets'> • • • • • • • • • • • • • • • • • • •</span></div>
-	      <div className='flex-h'>
-          <div className='datasplit'>{`Claimable rewards`}</div>
-          <div className='blackdata'>
-            {`${numberWithDecimals(earned, Config.RedToken.decimals, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${numberWithDecimals(earned * tokenPrice, Config.RedToken.decimals, 2)}`}
-          </div>
-	      </div>
-	      <div className='flex-h'>
-          <div className='datasplit'>{`Hourly estimate`}</div>
-          <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * tokenPrice).toFixed(2)}`}
-          </div>
-	      </div>	  
-	      <div className='flex-h'>
-          <div className='datasplit'>{`Daily estimate`}</div>
-          <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600 * 24, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * 24 * tokenPrice).toFixed(2)}`}
+          <div className='text-tiny wp-50'>{`Hourly estimate`}</div>
+          <div className='text-tiny text-gray'>
+            {`${numberWithDecimals(rate * 3600, 0, Config.Utils.decimals)} ${Config.BlueToken.symbol} = $${(rate * 3600 * tokenPrice).toFixed(2)}`}
           </div>
 	      </div>	  
 	      <div className='flex-h'>
-          <div className='datasplit'>{`Weekly estimate`}</div>
-          <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600 * 24 * 7, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * 24 * 7 * tokenPrice).toFixed(2)}`}
+          <div className='text-tiny wp-50'>{`Daily estimate`}</div>
+          <div className='text-tiny text-gray'>
+            {`${numberWithDecimals(rate * 3600 * 24, 0, Config.Utils.decimals)} ${Config.BlueToken.symbol} = $${(rate * 3600 * 24 * tokenPrice).toFixed(2)}`}
           </div>
-	      </div>
-        <br />
+	      </div>	  
 	      <div className='flex-h'>
-          <div className='datasplit'>{`Hourly ROI in USD`}</div>
-	        <div className='blackdata'> {`${(roiUnit * 3600 * 100).toFixed(2)}%`}</div>
-	      </div>	
-	      <div className='flex-h'>
-          <div className='datasplit'>{`Daily ROI in USD`}</div>
-	        <div className='blackdata'> {`${(roiUnit * 86400 * 100).toFixed(2)}%`}</div>
-	      </div>	
-	      <div className='flex-h'>
-          <div className='datasplit'>{`Weekly ROI in USD`}</div>
-	        <div className='blackdata'> {`${(roiUnit * 86400 * 7 * 100).toFixed(2)}%`}</div>
-	      </div>
-	      <div className='flex-h'>
-          <div className='datasplit'>{`APY (unstable)`}</div>
-	        <div className='blackdata'> {`${(roiUnit * 86400 * 365 * 100).toFixed(2)}%`}</div>
-	      </div>	
-	    </div>
+          <div className='text-tiny wp-50'>{`Weekly estimate`}</div>
+          <div className='text-tiny text-gray'>
+            {`${numberWithDecimals(rate * 3600 * 24 * 7, 0, Config.Utils.decimals)} ${Config.BlueToken.symbol} = $${(rate * 3600 * 24 * 7 * tokenPrice).toFixed(2)}`}
+          </div>
+	      </div>	  
+				<br />
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`Hourly ROI in USD`}</div>
+					<div className='text-tiny text-gray'> {`${numberWithDecimals(roiUnit * 3600 * 100, 0, 2)}%`}</div>
+				</div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`Daily ROI in USD`}</div>
+					<div className='text-tiny text-gray'> {`${numberWithDecimals(roiUnit * 86400 * 100, 0, 2)}%`}</div>
+				</div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`Weekly ROI in USD`}</div>
+					<div className='text-tiny text-gray'> {`${numberWithDecimals(roiUnit * 86400 * 7 * 100, 0, 2)}%`}</div>
+				</div>
+				<div className='flex-h'>
+					<div className='text-tiny wp-50'>{`APY (unstable)`}</div>
+					<div className='text-tiny text-gray'> {`${numberWithDecimals(roiUnit * 86400 * 365 * 100, 0, 2)}%`}</div>
+				</div>
+			</div>
     </React.Fragment>
   )
 };
