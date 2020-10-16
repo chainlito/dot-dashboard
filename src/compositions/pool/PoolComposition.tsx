@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { RootState } from 'types';
 import { Button } from '@material-ui/core';
 
-import Config from 'config';
 import { Container, Header, Footer, ConnectWalletButton, RewardAsset, StakeAsset } from 'components';
 import {
   poolStake,
@@ -23,11 +22,13 @@ import {
   selectPoolTotalStaked,
   selectPoolPeriodFinish,
   selectPoolStakeTokenInfo,
-  selectPoolInfo
+  selectPoolInfo,
+  selectPoolRewardTokenInfo
 } from 'store/pool/poolSelector';
 import { selectAccount } from 'store/account/accountSelector';
 import { getDateLeft, secondsToDays, secondsToHours, secondsToMinutes, secondsToSeconds, getEstimatedPercent } from 'utils';
 import { ethscanclient } from 'lib';
+import BackgroundImage from 'assets/img/background.png';
 
 interface StateFromProps {
   account: ReturnType<typeof selectAccount>;
@@ -38,6 +39,7 @@ interface StateFromProps {
   stakeTokenBalance: ReturnType<typeof selectStakeTokenBalance>;
   deadline: ReturnType<typeof selectPoolPeriodFinish>;
   stakeTokenInfo: ReturnType<typeof selectPoolStakeTokenInfo>;
+  rewardTokenInfo: ReturnType<typeof selectPoolRewardTokenInfo>;
   poolInfo: ReturnType<typeof selectPoolInfo>;
 }
 interface DispatchFromProps {
@@ -68,6 +70,7 @@ const PoolComposition: React.FC<Props> = ({
   loadEarned,
   loadStaked,
   stakeTokenInfo,
+  rewardTokenInfo,
   poolInfo,
 }) => {
   const [timeLeft, setTimeLeft] = React.useState<number>(0);
@@ -93,6 +96,7 @@ const PoolComposition: React.FC<Props> = ({
   if (!account) {
     return (
       <React.Fragment>
+        <img className='img-background fit' src={BackgroundImage} alt='background' />
         <Header />
         <Container>
           <div className='screen-center flex-v'>
@@ -108,14 +112,15 @@ const PoolComposition: React.FC<Props> = ({
 
   return (
     <React.Fragment>
+      <img className='img-background fit' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
         <div className='flex-v screen-center'>
           <div className='mb-20'>
-            <div className='center-h text-title mb-10'>
-              {`Deposit ${stakeTokenInfo.symbol} and earn ${Config.Token.symbol}`}
+            <div className='center-h text-medium mb-10'>
+              {`Deposit ${stakeTokenInfo.symbol} and earn ${rewardTokenInfo.symbol}`}
             </div>
-            <div className={`center-h ${timeLeft > 0 ? 'text-small' : 'text-error'}`}>
+            <div className={`center-h text-small text-gray`}>
               {timeLeft > 0 ? 
                 `Time Left : ${secondsToDays(timeLeft)} day(s), ${secondsToHours(timeLeft)} hour(s), ${secondsToMinutes(timeLeft)} minute(s), ${secondsToSeconds(timeLeft)} second(s)` :
                 `The Pool is not open yet, please check our telegram.`}
@@ -123,17 +128,20 @@ const PoolComposition: React.FC<Props> = ({
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
             <RewardAsset
+              rewardToken={rewardTokenInfo}
               earned={earned}
               percent={estimatePercent}
               onHarvest={harvest}
             />
             <StakeAsset
-              tokenInfo={stakeTokenInfo}
+              stakeTokenInfo={stakeTokenInfo}
+              rewardTokenInfo={rewardTokenInfo}
               allowed={allowed}
               started={timeLeft > 0}
               staked={staked}
               totalStaked={totalStaked}
               balance={stakeTokenBalance}
+              rewardBalance={poolInfo.balance}
               onApprove={approve}
               onStake={(amount: number) => stake(amount)}
               onUnstake={unstake}
@@ -168,6 +176,7 @@ function mapStateToProps(
     stakeTokenBalance: selectStakeTokenBalance(state),
     deadline: selectPoolPeriodFinish(state),
     stakeTokenInfo: selectPoolStakeTokenInfo(state),
+    rewardTokenInfo: selectPoolRewardTokenInfo(state),
     poolInfo: selectPoolInfo(state),
   };
 }

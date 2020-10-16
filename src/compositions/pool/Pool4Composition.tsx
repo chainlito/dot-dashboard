@@ -31,7 +31,7 @@ interface DispatchFromProps {
 
 type Props = StateFromProps & DispatchFromProps;
 
-const Pool1Composition: React.FC<Props> = ({
+const Pool4Composition: React.FC<Props> = ({
   setPoolInfo,
   setStakeTokenInfo,
   setPoolContract,
@@ -43,10 +43,10 @@ const Pool1Composition: React.FC<Props> = ({
 }) => {
 
   useEffect(() => {
-    setPoolInfo(Config.Pool1);
-    setStakeTokenInfo(Config.BlueLpToken);
-    setPoolContract(web3client.pool1Contract);
-    setStakeTokneContract(web3client.blueLpTokenContract);
+    setPoolInfo(Config.Pool4);
+    setStakeTokenInfo(Config.LinkToken);
+    setPoolContract(web3client.pool4Contract);
+    setStakeTokneContract(web3client.linkTokenContract);
     setRewardTokenInfo(Config.BlueToken);
     setRewardTokenContract(web3client.blueTokenContract);
     loadAllowance();
@@ -80,4 +80,4 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Pool1Composition);
+)(Pool4Composition);

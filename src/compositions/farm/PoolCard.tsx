@@ -8,14 +8,15 @@ interface OwnProps {
   picture: string;
   poolUrl: string;
   apy: number;
-  rewardPercent: number;
+  isHigh?: boolean;
+  isRed: boolean;
 }
 
 type Props = OwnProps & RouteComponentProps;
 
-const PoolCard: React.FC<Props> = ({ stakingToken, picture, poolUrl, apy, rewardPercent, history }: Props) => {
+const PoolCard: React.FC<Props> = ({ stakingToken, picture, poolUrl, apy, history, isHigh = false, isRed }: Props) => {
   return (
-    <Card className='card card-h medium transparent'>
+    <Card className={`card card-h medium${isRed ? ' red' : ' blue'}${isHigh ? ' raised' : ''} transparent`}>
       <CardContent>
         <div className='section'>
           <div className='circle'>
@@ -28,13 +29,14 @@ const PoolCard: React.FC<Props> = ({ stakingToken, picture, poolUrl, apy, reward
             <span className='text-small'>{`Deposit ${stakingToken.symbol}`}</span>
           </div>
           <div className='center-h mb-20'>
-            <span className='text-small'>{`Earn ${Config.Token.symbol}`}</span>
+            <span className='text-small'>{`Earn ${isRed ? Config.RedToken.symbol : Config.BlueToken.symbol}`}</span>
           </div>
           <div className='center-h'>
-            <span className='text-error'>{`${apy.toFixed(2)}% APY`}</span>
-          </div>
-          <div className='center-h'>
-            <span className='text-small'>{`${rewardPercent.toFixed(2)}% of Rewards`}</span>
+            {apy ? (
+              <span className='text-error'>{`${apy.toFixed(2)}% APY`}</span>
+            ) : (
+              <span className='text-small text-gray'>Loading...</span>
+            )}
           </div>
         </div>
         <div className='section'>

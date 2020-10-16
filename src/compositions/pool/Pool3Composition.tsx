@@ -12,6 +12,8 @@ import {
   poolSetStakeTokenContract,
   poolLoadAllowance,
   poolGetPeriodFinish,
+  poolSetRewardTokenInfo,
+  poolSetRewardTokenContract,
 } from 'store/pool/poolActions';
 import PoolComposition from './PoolComposition';
 
@@ -21,6 +23,8 @@ interface DispatchFromProps {
   setStakeTokenInfo: typeof poolSetStakeTokenInfo;
   setPoolContract: typeof poolSetContract;
   setStakeTokneContract: typeof poolSetStakeTokenContract;
+  setRewardTokenInfo: typeof poolSetRewardTokenInfo;
+  setRewardTokenContract: typeof poolSetRewardTokenContract;
   loadAllowance: typeof poolLoadAllowance;
   loadPeriodFinish: typeof poolGetPeriodFinish;
 }
@@ -32,15 +36,19 @@ const Pool3Composition: React.FC<Props> = ({
   setStakeTokenInfo,
   setPoolContract,
   setStakeTokneContract,
+  setRewardTokenInfo,
+  setRewardTokenContract,
   loadAllowance,
   loadPeriodFinish,
 }) => {
 
   useEffect(() => {
     setPoolInfo(Config.Pool3);
-    setStakeTokenInfo(Config.UniLpToken);
+    setStakeTokenInfo(Config.YfiToken);
     setPoolContract(web3client.pool3Contract);
-    setStakeTokneContract(web3client.uniLpTokenContract);
+    setStakeTokneContract(web3client.yfiTokenContract);
+    setRewardTokenInfo(Config.BlueToken);
+    setRewardTokenContract(web3client.blueTokenContract);
     loadAllowance();
     loadPeriodFinish();
   });
@@ -64,6 +72,8 @@ function mapDispatchToProps(dispatch: Dispatch): DispatchFromProps {
     setStakeTokenInfo: (payload: any) => dispatch(poolSetStakeTokenInfo(payload)),
     setPoolContract: (payload: any) => dispatch(poolSetContract(payload)),
     setStakeTokneContract: (payload: any) => dispatch(poolSetStakeTokenContract(payload)),
+    setRewardTokenInfo: (payload: any) => dispatch(poolSetRewardTokenInfo(payload)),
+    setRewardTokenContract: (payload: any) => dispatch(poolSetRewardTokenContract(payload)),
   };
 }
 

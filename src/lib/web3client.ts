@@ -8,21 +8,29 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.HttpProvider(Config.provider));
 }
 
-const tokenContract: any = getContract(Config.Token.abi, Config.Token.address);
 const orchestratorContract: any = getContract(Config.Orchestrator.abi, Config.Orchestrator.address);
 const policyContract: any = getContract(Config.Policy.abi, Config.Policy.address);
-const poolContract: any = getContract(Config.Pool.abi, Config.Pool.address);
 
 const redTokenContract: any = getContract(Config.RedToken.abi, Config.RedToken.address);
 const blueTokenContract: any = getContract(Config.BlueToken.abi, Config.BlueToken.address);
 const memeTokenContract: any = getContract(Config.MemeToken.abi, Config.MemeToken.address);
+const coreTokenContract: any = getContract(Config.CoreToken.abi, Config.CoreToken.address);
+const ytslaTokenContract: any = getContract(Config.YtslaToken.abi, Config.YtslaToken.address);
 const uniTokenContract: any = getContract(Config.UniToken.abi, Config.UniToken.address);
-const uniLpTokenContract: any = getContract(Config.UniLpToken.abi, Config.UniLpToken.address);
+const yfiTokenContract: any = getContract(Config.YfiToken.abi, Config.YfiToken.address);
+const linkTokenContract: any = getContract(Config.LinkToken.abi, Config.LinkToken.address);
+const redLpTokenContract: any = getContract(Config.RedLpToken.abi, Config.RedLpToken.address);
+const blueLpTokenContract: any = getContract(Config.BlueLpToken.abi, Config.BlueLpToken.address);
 const wethTokenContract: any = getContract(Config.WethToken.abi, Config.WethToken.address);
 
 const pool1Contract: any = getContract(Config.Pool1.abi, Config.Pool1.address);
 const pool2Contract: any = getContract(Config.Pool2.abi, Config.Pool2.address);
 const pool3Contract: any = getContract(Config.Pool3.abi, Config.Pool3.address);
+const pool4Contract: any = getContract(Config.Pool4.abi, Config.Pool4.address);
+const pool5Contract: any = getContract(Config.Pool5.abi, Config.Pool5.address);
+const pool6Contract: any = getContract(Config.Pool6.abi, Config.Pool6.address);
+const pool7Contract: any = getContract(Config.Pool7.abi, Config.Pool7.address);
+const pool8Contract: any = getContract(Config.Pool8.abi, Config.Pool8.address);
 
 /**
  * Common Contract Functions
@@ -65,10 +73,6 @@ function promisify(fn: (cb: any) => any): Promise<any> {
           resolve(result);
       });
   });
-}
-
-async function transferToken(amount: number, to: string): Promise<void> {
-  await promisify((f) => tokenContract.transfer(amount, to, f));
 }
 
 async function approve(contract: any, address: string, from: string) {
@@ -202,19 +206,26 @@ export default {
   poolGetRewardRate,
   // Utils
   promisify,
-  transferToken,
   // Contracts
-  tokenContract,
   redTokenContract,
   blueTokenContract,
   orchestratorContract,
   policyContract,
-  uniTokenContract,
+  coreTokenContract,
   memeTokenContract,
-  uniLpTokenContract,
+  ytslaTokenContract,
+  uniTokenContract,
+  yfiTokenContract,
+  linkTokenContract,
+  redLpTokenContract,
+  blueLpTokenContract,
   wethTokenContract,
   pool1Contract,
   pool2Contract,
   pool3Contract,
-  poolContract,
+  pool4Contract,
+  pool5Contract,
+  pool6Contract,
+  pool7Contract,
+  pool8Contract,
 };

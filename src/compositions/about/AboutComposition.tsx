@@ -1,10 +1,12 @@
 import React from 'react';
 import { Header, Container, Footer } from 'components';
 import AboutBackgrounImage from 'assets/img/about.png';
+import BackgroundImage from 'assets/img/background.png';
 
 const AboutComposition: React.FC = () => {
   return (
     <React.Fragment>
+    <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
         <br/>
@@ -16,6 +18,10 @@ const AboutComposition: React.FC = () => {
           <br/><br/>
           SEO differs from local search engine optimization in that the latter is focused on optimizing a business' online presence so that its web pages will be displayed by search engines when a user enters a local search for its products or services. The former instead is more focused on national or international searches.
         </div>
+        <div className='mb-100' />
+        <br/>
+        <div className='mb-100' />
+        <br/>
         <div className='mb-50' />
       </Container>
       <Footer />

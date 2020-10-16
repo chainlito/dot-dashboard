@@ -11,8 +11,7 @@ function* setAccountSaga() {
   try {
     const address = yield web3client.getAccount();
     if (address) {
-      //const balance: number = yield web3client.getBalance(web3client.tokenContract, address);
-      yield put(setAccount({ address, balance: 0 }));
+      yield put(setAccount({ address }));
       yield put(poolLoadAllowance());
       yield put(poolGetPeriodFinish());
     }

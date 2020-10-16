@@ -8,6 +8,7 @@ interface OwnProps {
   dialogTitle: React.ReactElement;
   poolBalance: number;
   stakeToken: any;
+  rewardToken: any;
   totalStaked: number;
   userBalance: number;
   onClose: () => void;
@@ -21,6 +22,7 @@ const StakeDialog: React.FC<Props> = ({
   dialogTitle,
   poolBalance,
   stakeToken,
+  rewardToken,
   totalStaked,
   userBalance,
   onClose,
@@ -51,7 +53,7 @@ const StakeDialog: React.FC<Props> = ({
         </DialogTitle>
         <DialogContent>
           <div className='mb-10 text-small'>
-            Community distributes <b>{poolBalance}</b>&nbsp; {Config.Token.symbol} as rewards
+            Community distributes <b>{poolBalance}</b>&nbsp; {rewardToken.symbol} as rewards
           </div>
           <div className='mb-10'>
             Total staked {stakeToken.symbol} by Community is &nbsp;

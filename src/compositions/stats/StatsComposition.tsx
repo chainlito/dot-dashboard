@@ -6,7 +6,6 @@ import { Header, Container, Footer } from 'components';
 
 import Pool1Stats from './Pool1Stats';
 import Pool2Stats from './Pool2Stats';
-import Pool3Stats from './Pool3Stats';
 import { coingeckoclient } from 'lib';
 
 
@@ -33,9 +32,6 @@ const StatsComposition = () => {
             </div>
             <div className='card halfcard mr-30'>
               <Pool2Stats tokenPrice={price} />
-            </div>
-            <div className='card halfcard'>
-              <Pool3Stats tokenPrice={price} />
             </div>
           </div>
         </div>

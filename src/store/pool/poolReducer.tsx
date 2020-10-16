@@ -4,8 +4,10 @@ import createReducer from 'store/config/createReducer';
 export interface PoolReducerType {
   contract?: any;
   stakeTokenContract?: any;
+  rewardTokenContract?: any;
   poolInfo?: any;
   stakeTokenInfo?: any;
+  rewardTokenInfo?: any;
   allowance: number;
   staked: number;
   totalStaked: number;
@@ -40,6 +42,14 @@ const poolSetStakeTokenInfoReducer = (
   stakeTokenInfo: payload,
 });
 
+const poolSetRewardTokenInfoReducer = (
+  state: PoolReducerType,
+  { payload }: Action<any>,
+): PoolReducerType => ({
+  ...state,
+  rewardTokenInfo: payload,
+});
+
 const poolSetContractReducer = (
   state: PoolReducerType,
   { payload }: Action<any>,
@@ -54,6 +64,14 @@ const poolSetStakeTokenContractReducer = (
 ): PoolReducerType => ({
   ...state,
   stakeTokenContract: payload,
+});
+
+const poolSetRewardTokenContractReducer = (
+  state: PoolReducerType,
+  { payload }: Action<any>,
+): PoolReducerType => ({
+  ...state,
+  rewardTokenContract: payload,
 });
 
 const poolApproveTokenSuccessReducer = (
@@ -107,8 +125,10 @@ const poolGetPeriodFinishSuccessReducer = (
 export const poolReducer = createReducer<PoolReducerType>(defaultState, {
   [ActionType.POOL_SET_POOL_INFO]: poolSetPoolInfoReducer,
   [ActionType.POOL_SET_STAKE_TOKEN_INFO]: poolSetStakeTokenInfoReducer,
+  [ActionType.POOL_SET_REWARD_TOKEN_INFO]: poolSetRewardTokenInfoReducer,
   [ActionType.POOL_SET_CONTRACT]: poolSetContractReducer,
   [ActionType.POOL_SET_STAKE_TOKEN_CONTRACT]: poolSetStakeTokenContractReducer,
+  [ActionType.POOL_SET_REWARD_TOKEN_CONTRACT]: poolSetRewardTokenContractReducer,
   [ActionType.POOL_APPROVE_TOKEN_SUCCESS]: poolApproveTokenSuccessReducer,
   [ActionType.POOL_GET_STAKED_SUCCESS]: poolGetStakedSuccessReducer,
   [ActionType.POOL_GET_EARNED_SUCCESS]: poolGetEarnedSuccessReducer,

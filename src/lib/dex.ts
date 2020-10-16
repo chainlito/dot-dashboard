@@ -20,9 +20,9 @@ const getEthPrice = async () => {
   return response.data.result.ethusd;
 }
 
-const getTokenPrice = async () => {
+const getRedTokenPrice = async () => {
   const response = await axios({
-    url: `${PROXY}${API_URL}/uniswap/pool?pairSelected=${Config.Uniswap.address}`,
+    url: `${PROXY}${API_URL}/uniswap/pool?pairSelected=${Config.RedLpToken.address}`,
     method: 'GET',
     headers: {
       authorization: `Bearer ${API_KEY}`,
@@ -33,15 +33,37 @@ const getTokenPrice = async () => {
   return rate * ethPrice;
 };
 
-const getLpTokenPrice = async () => {
-  const totalSupply = await web3client.getTotalSupply(web3client.uniLpTokenContract);
-  const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.UniLpToken.address);
+const getBlueTokenPrice = async () => {
+  const response = await axios({
+    url: `${PROXY}${API_URL}/uniswap/pool?pairSelected=${Config.BlueLpToken.address}`,
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${API_KEY}`,
+    }
+  });
+  const rate = response.data.data.pair.reserve1 / response.data.data.pair.reserve0;
+  const ethPrice = await getEthPrice();
+  return rate * ethPrice;
+};
+
+const getRedLpTokenPrice = async () => {
+  const totalSupply = await web3client.getTotalSupply(web3client.redLpTokenContract);
+  const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.RedLpToken.address);
+  const ethPrice = await coingecko.getEthPrice();
+  return ethPrice * wethBalance / totalSupply;
+}
+
+const getBlueLpTokenPrice = async () => {
+  const totalSupply = await web3client.getTotalSupply(web3client.blueLpTokenContract);
+  const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.BlueLpToken.address);
   const ethPrice = await coingecko.getEthPrice();
   return ethPrice * wethBalance / totalSupply;
 }
 
 export default {
-  getTokenPrice,
+  getRedTokenPrice,
+  getBlueTokenPrice,
   getEthPrice,
-  getLpTokenPrice,
+  getRedLpTokenPrice,
+  getBlueLpTokenPrice,
 };

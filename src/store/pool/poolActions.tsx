@@ -10,6 +10,11 @@ export const poolSetStakeTokenInfo = (payload: any) => ({
   payload,
 });
 
+export const poolSetRewardTokenInfo = (payload: any) => ({
+  type: ActionType.POOL_SET_REWARD_TOKEN_INFO,
+  payload,
+});
+
 export const poolSetContract = (payload: any) => ({
   type: ActionType.POOL_SET_CONTRACT,
   payload,
@@ -17,6 +22,11 @@ export const poolSetContract = (payload: any) => ({
 
 export const poolSetStakeTokenContract = (payload: any) => ({
   type: ActionType.POOL_SET_STAKE_TOKEN_CONTRACT,
+  payload,
+});
+
+export const poolSetRewardTokenContract = (payload: any) => ({
+  type: ActionType.POOL_SET_REWARD_TOKEN_CONTRACT,
   payload,
 });
 

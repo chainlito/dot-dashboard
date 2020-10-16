@@ -51,7 +51,7 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
               <IconButton className='mr-30' onClick={() => history.push('/dashboard')}>
                 <img src={StartRacingImage} alt='button' />
               </IconButton>
-              <IconButton onClick={() => history.push('/#')}>
+              <IconButton onClick={() => history.push('/farm')}>
                 <img src={StartFarmingImage} alt='button' />
               </IconButton>
             </div>

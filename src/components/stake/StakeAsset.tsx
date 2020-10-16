@@ -5,12 +5,14 @@ import { numberWithDecimals } from 'utils';
 import { StakeDialog, UnstakeDialog } from 'components';
 
 interface OwnProps {
-  tokenInfo: any;
+  stakeTokenInfo: any;
+  rewardTokenInfo: any;
   allowed: boolean;
   started: boolean;
   staked: number;
   totalStaked: number;
   balance: number;
+  rewardBalance: number;
   onApprove: () => void;
   onStake: (amount: number) => void;
   onUnstake: (amount: number) => void;
@@ -18,7 +20,7 @@ interface OwnProps {
 
 type Props = OwnProps;
 
-export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, onUnstake, balance, tokenInfo, started }: Props) => {
+export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, onUnstake, balance, rewardBalance, stakeTokenInfo, rewardTokenInfo, started }: Props) => {
   const [stakeDialogOpen, setStakeDialogOpen] = React.useState<boolean>(false);
   const [unstakeDialogOpen, setUnstakeDialogOpen] = React.useState<boolean>(false);
 
@@ -26,19 +28,19 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
     <Card className='card card-h medium transparent'>
       <CardContent>
         <div className='section'>
+          <div className='center-h'>
+            <h2>{stakeTokenInfo.name}</h2>
+          </div>
           <div className='circle'>
-            <img className="logo-image" src={tokenInfo.image} alt={tokenInfo.name} />
+            <img className="logo-image" src={stakeTokenInfo.image} alt={stakeTokenInfo.name} />
           </div>
-          <div className='center-h boxsize'>
-            <h2>{tokenInfo.name}</h2>
-          </div>
-          <div className='center-h boxsize mt-20'>
+          <div className='center-h mt-50'>
             <span className='text-number'>
-              {numberWithDecimals(staked, tokenInfo.decimals, Config.Utils.decimals)}
+              {numberWithDecimals(staked, stakeTokenInfo.decimals, Config.Utils.decimals)}
             </span>
           </div>
-          <div className='center-h mb-20'>
-            <span className='text-small'>{`${tokenInfo.symbol} Staked`}</span>
+          <div className='center-h mb-30'>
+            <span className='text-small'>{`${stakeTokenInfo.symbol} Staked`}</span>
           </div>
         </div>
         {!allowed ? (
@@ -51,7 +53,7 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
                   className='btn-primary'
                   onClick={onApprove}
                 >
-                  {`Approve ${tokenInfo.symbol}`}
+                  {`Approve ${stakeTokenInfo.symbol}`}
                 </Button>
               </div>
             </div>
@@ -68,14 +70,15 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
 
       <StakeDialog
         open={stakeDialogOpen}
-        poolBalance={Config.Pool.balance}
-        stakeToken={tokenInfo}
+        poolBalance={rewardBalance}
+        stakeToken={stakeTokenInfo}
+        rewardToken={rewardTokenInfo}
         totalStaked={totalStaked}
         userBalance={balance}
         dialogTitle={(
           <div className="center-v">
-            <img className="logo-image" src={tokenInfo.image} alt={tokenInfo.name} />
-            <span className="logo-text">{`Stake ${tokenInfo.symbol}`}</span>
+            <img className="logo-image" src={stakeTokenInfo.image} alt={stakeTokenInfo.name} />
+            <span className="logo-text">{`Stake ${stakeTokenInfo.symbol}`}</span>
           </div>
         )}
         onStake={onStake}
@@ -83,14 +86,14 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
       />
       <UnstakeDialog
         open={unstakeDialogOpen}
-        stakeToken={tokenInfo}
+        stakeToken={stakeTokenInfo}
         totalStaked={totalStaked}
         staked={staked}
         userBalance={balance}
         dialogTitle={(
           <div className="center-v">
-            <img className="logo-image" src={tokenInfo.image} alt={tokenInfo.name} />
-            <span className="logo-text">{`Withdraw ${tokenInfo.symbol}`}</span>
+            <img className="logo-image" src={stakeTokenInfo.image} alt={stakeTokenInfo.name} />
+            <span className="logo-text">{`Withdraw ${stakeTokenInfo.symbol}`}</span>
           </div>
         )}
         onUnstake={onUnstake}

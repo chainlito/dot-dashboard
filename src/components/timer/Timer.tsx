@@ -33,13 +33,13 @@ class CustomTimer extends React.Component {
         onEnd();
       }
     }, {
-      time: (86400 - Config.Token.rebase.length) * 1000,
+      time: (86400 - Config.Orchestrator.rebase.length) * 1000,
       callback: () => {
         onStart();
       }
     }]);
     if (started) {
-      setTime(getTimeLeft(Config.Token.rebase.offset) * 1000);
+      setTime(getTimeLeft(Config.Orchestrator.rebase.offset) * 1000);
       start();
     }
   }

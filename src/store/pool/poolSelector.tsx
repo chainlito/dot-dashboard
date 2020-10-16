@@ -16,6 +16,11 @@ export const selectPoolStakeTokenInfo = createSelector(
   (state) => state.stakeTokenInfo,
 );
 
+export const selectPoolRewardTokenInfo = createSelector(
+  [ selectPoolState ],
+  (state) => state.rewardTokenInfo,
+);
+
 export const selectPoolContract = createSelector(
   [ selectPoolState ],
   (state) => state.contract,
@@ -24,6 +29,11 @@ export const selectPoolContract = createSelector(
 export const selectPoolStakeTokenContract = createSelector(
   [ selectPoolState ],
   (state) => state.stakeTokenContract,
+);
+
+export const selectPoolRewardTokenContract = createSelector(
+  [ selectPoolState ],
+  (state) => state.rewardTokenContract,
 );
 
 export const selectPoolStakeAllowed = createSelector(

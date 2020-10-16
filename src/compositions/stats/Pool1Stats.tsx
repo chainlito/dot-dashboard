@@ -59,7 +59,7 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
 	        <div className='blackdata'> {`$ ${numberWithDecimals(token1Price, 0, 2)}`}</div>
 	      </div>
 	      <div className='flex-h'>
-          <div className='datasplit'>{`1 ${Config.Token.symbol} =`}</div>
+          <div className='datasplit'>{`1 ${Config.RedToken.symbol} =`}</div>
 	        <div className='blackdata'> {`$ ${numberWithDecimals(tokenPrice, 0, 2)}`}</div>
 	      </div>
         <br/>
@@ -69,7 +69,7 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
             There are total &nbsp;
           </div>
           <div className='blackdata'>
-            {`${numberWithDecimals(totalStaked, Config.MemeToken.decimals, Config.Utils.decimals)} ${Config.MemeToken.symbol} staked in ${Config.Token.symbol}'s ${Config.MemeToken.symbol} staking pool.`}
+            {`${numberWithDecimals(totalStaked, Config.MemeToken.decimals, Config.Utils.decimals)} ${Config.MemeToken.symbol} staked in ${Config.RedToken.symbol}'s ${Config.MemeToken.symbol} staking pool.`}
             <br/>
             {`= $ ${numberWithDecimals(totalStaked * token1Price, Config.MemeToken.decimals, 2)}`}
           </div>
@@ -85,29 +85,29 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
           </div>
 	      </div>
         <br/>
-	      <div className='ystatshead'>{Config.Token.symbol} REWARDS <span className='ybullets'> • • • • • • • • • • • • • • • • • • •</span></div>
+	      <div className='ystatshead'>{Config.RedToken.symbol} REWARDS <span className='ybullets'> • • • • • • • • • • • • • • • • • • •</span></div>
 	      <div className='flex-h'>
           <div className='datasplit'>{`Claimable rewards`}</div>
           <div className='blackdata'>
-            {`${numberWithDecimals(earned, Config.Token.decimals, Config.Utils.decimals)} ${Config.Token.symbol} = $${numberWithDecimals(earned * tokenPrice, Config.Token.decimals, 2)}`}
+            {`${numberWithDecimals(earned, Config.RedToken.decimals, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${numberWithDecimals(earned * tokenPrice, Config.RedToken.decimals, 2)}`}
           </div>
 	      </div>
 	      <div className='flex-h'>
           <div className='datasplit'>{`Hourly estimate`}</div>
           <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600, 0, Config.Utils.decimals)} ${Config.Token.symbol} = $${(rate * 3600 * tokenPrice).toFixed(2)}`}
+            {`${numberWithDecimals(rate * 3600, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * tokenPrice).toFixed(2)}`}
           </div>
 	      </div>	  
 	      <div className='flex-h'>
           <div className='datasplit'>{`Daily estimate`}</div>
           <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600 * 24, 0, Config.Utils.decimals)} ${Config.Token.symbol} = $${(rate * 3600 * 24 * tokenPrice).toFixed(2)}`}
+            {`${numberWithDecimals(rate * 3600 * 24, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * 24 * tokenPrice).toFixed(2)}`}
           </div>
 	      </div>	  
 	      <div className='flex-h'>
           <div className='datasplit'>{`Weekly estimate`}</div>
           <div className='blackdata'>
-            {`${numberWithDecimals(rate * 3600 * 24 * 7, 0, Config.Utils.decimals)} ${Config.Token.symbol} = $${(rate * 3600 * 24 * 7 * tokenPrice).toFixed(2)}`}
+            {`${numberWithDecimals(rate * 3600 * 24 * 7, 0, Config.Utils.decimals)} ${Config.RedToken.symbol} = $${(rate * 3600 * 24 * 7 * tokenPrice).toFixed(2)}`}
           </div>
 	      </div>
         <br />
