@@ -31,7 +31,7 @@
     }
 
     &.medium {
-      width: 290px;
+      width: 260px;
     }
 
     &.blue {
@@ -83,7 +83,7 @@
 }
 
 .MuiCardContent-root {
-  padding: 15px 15px 25px 15px;
+  padding: 0px !important;
   position: relative;
 }
 

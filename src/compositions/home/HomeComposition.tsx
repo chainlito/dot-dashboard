@@ -81,8 +81,8 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
         </div>
         <div className='home-seo'>
           <div className='wp-50 mr-120'>
-            <div className='text-large mb-30'>From idea to implementation</div>
-            <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results (known as "natural" or "organic" results) and excludes direct traffic and the purchase of paid placement</div>
+            <div className='text-large mb-30'>A Race for Glory</div>
+            <div className='text-small text-gray'>When I was a child and we would go to the baseball games, the famous “dot races” on the JumboTron  would rule the 7th inning where  red and blue race around the “track”  with color commentary by the announcer.    Bets were places,  hearts were broken and  new lives were forged. </div>
           </div>
           <div className='wp-50'>
             <img src={SEO1Image} alt='SEO' />
@@ -94,21 +94,27 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           </div>
           <div className='wp-50 ml-120'>
             <div className='text-large mb-30'>What is the Dots game?</div>
-            <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results (known as "natural" or "organic" results) and excludes direct traffic and the purchase of paid placement</div>
+            <div className='text-small text-gray'>Now in the age of Defi, Ethereum & Rebasing, we are able to find new life in the ever so famous Dot Race with the ultimate on-chain game of Skill.    It is very simple:</div>
+            <div className='text-small text-gray mt-20 mb-20'>We start with the mechanics above and allow for Battle every 4 hours</div>
+            <div className='text-small text-gray'>the BATTLE function does the following: </div>
+            <div className='text-small text-gray'>1 – Checks  the current market price of RED and BLUE</div>
+            <div className='text-small text-gray'>2 – Determines the % discrepancy in price between RED and BLUE</div>
+            <div className='text-small text-gray'>3 – REBASE dynamically at 10% of the price discrepancy between RED and BLUE.</div>
           </div>
         </div>
 
         <div className='home-guide'>
           <div className='mb-30'>
-            <div className='text-large'>How to play</div>
-            <div className='text-large text-red'>PROJECT DOT?</div>
+            <div className='text-large'>BUT The Players Influence the Game!</div>
           </div>
           <div className='flex-h mb-30'>
             <div className='wp-50 mr-120'>
-              <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.[1] SEO refers to the improvement of unpaid results.</div>
+              <div className='text-small text-gray'>What makes the game interesting is that any player can MODIFY the Boost Rate. The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask. It is set to a range of 5%-15% with infinite up & down moves possible by the players</div>
             </div>
             <div className='wp-50'>
-              <div className='text-small text-gray'>Search engine optimization (SEO) is the process of growing the quality and quantity of website traffic by increasing the visibility of a website or a web page to users of a web search engine.</div>
+              <div className='text-small text-gray mb-10'>There are two ways to play the game:</div>
+              <div className='text-small text-gray'>1. Pick a side and watch the race  Choose Red/Choose Blue (links to farms)</div>
+              <div className='text-small text-gray'>2. Trade, Boost & Modify to WIN!</div>
             </div>
           </div>
         </div>

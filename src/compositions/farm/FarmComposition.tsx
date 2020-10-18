@@ -72,7 +72,7 @@ const FarmComposition = () => {
               Select a farm
             </div>
             <div className='center-h text-small text-gray'>
-              Earn BLUE tokens by providing liquidity
+              Stake your “Blue chip” tokens to Choose & Earn Blue
             </div>
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
@@ -109,7 +109,7 @@ const FarmComposition = () => {
 
 
           <div className='center-h text-small text-gray mt-100 mb-50'>
-            Earn RED tokens by providing liquidity
+            Stake your “Red Hot” tokens to Choose & Earn Red
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
             <PoolCard
