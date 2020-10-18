@@ -57,7 +57,7 @@ async function getTotalSupply(contract: any,): Promise<number> {
 }
 
 async function rebase(from: string) {
-  await orchestratorContract.methods.rebase().send({ from, gas: 900000 })
+  await orchestratorContract.methods.rebase().send({ from })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
