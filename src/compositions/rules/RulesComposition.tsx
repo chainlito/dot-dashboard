@@ -17,8 +17,10 @@ const RulesComposition: React.FC = () => {
             <div className='wp-50 mr-50'>
               <div className='text-large text-red mb-20'>Rule №1</div>
               <div className='text-small text-gray'>
-                Supply will always be Equal 2,000,000.<br/>
-                Within the game, we expect supply to go radically up and down while touching equilibrium every once in a while.  How long will it take and how high/low will it go before reaching equilibrium?  Only the game and players know!
+                <b className='text-normal'>Supply will always be Equal 2,000,000.<br/></b>
+                <span>
+                  Within the game, we expect supply to go radically up and down while touching equilibrium every once in a while.  How long will it take and how high/low will it go before reaching equilibrium?  Only the game and players know!
+                </span>
               </div>
             </div>
             <div className='wp-50'>
@@ -32,7 +34,7 @@ const RulesComposition: React.FC = () => {
             <div className='wp-50 ml-50'>
               <div className='text-large text-red mb-20'>Rule №2</div>
               <div className='text-small text-gray'>
-                A Rebase is possible every 4 hours<br/>
+                <b className='text-normal'>A Rebase is possible every 4 hours<br/></b>
                 Although the total supply of RED and BLUE will always be exactly 2,000,000,  <b>the supplies can be “re-balanced”  every 4 hours by anybody that calls the BATTLE function. </b><br/>
                 The Players Call the Battleshots!
               </div>
@@ -42,7 +44,7 @@ const RulesComposition: React.FC = () => {
             <div className='wp-50 mr-50'>
               <div className='text-large text-red mb-20'>Rule №3</div>
               <div className='text-small text-gray'>
-                YOU influence the game<br/>
+                <b className='text-normal'>YOU influence the game<br/></b>
                 What makes the game interesting is that any player can MODIFY the Boost Rate<br/>
                 The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask<br/>
                 It is set to a range of 5%-15% with infinite up & down moves possible by the players<br/>

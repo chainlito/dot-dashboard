@@ -43,7 +43,7 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           <div className='wp-50 mr-70'>
             <div className='text-large'>Baseball’s famous “Dot Race”</div>
             <div className='text-medium text-red mb-30'>Now on Defi</div>
-            <div className='text-small text-gray mb-50'>
+            <div className='text-small mb-50'>
               <span>Two teams:   RED and BLUE.    Each team starts with a Total Supply of 1,000,000 Tokens.  No More can be minted, combined supply will always be exactly 2,000,000,  however </span>
               <b>the supplies can be “re-balanced”  every 4 hours by anybody that calls the BATTLE function.</b>
             </div>
@@ -80,9 +80,9 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           </div>
         </div>
         <div className='home-seo'>
-          <div className='wp-50 mr-120'>
+          <div className='wp-50 pr-50'>
             <div className='text-large mb-30'>A Race for Glory</div>
-            <div className='text-small text-gray'>When I was a child and we would go to the baseball games, the famous “dot races” on the JumboTron  would rule the 7th inning where  red and blue race around the “track”  with color commentary by the announcer.    Bets were places,  hearts were broken and  new lives were forged. </div>
+            <div className='text-small'>When I was a child and we would go to the baseball games, the famous “dot races” on the JumboTron  would rule the 7th inning where  red and blue race around the “track”  with color commentary by the announcer.    Bets were places,  hearts were broken and  new lives were forged. </div>
           </div>
           <div className='wp-50'>
             <img src={SEO1Image} alt='SEO' />
@@ -92,14 +92,14 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           <div className='wp-50'>
             <img src={SEO2Image} alt='SEO' style={{ marginLeft: -150 }} />
           </div>
-          <div className='wp-50 ml-120'>
+          <div className='wp-50 pl-50'>
             <div className='text-large mb-30'>What is the Dots game?</div>
-            <div className='text-small text-gray'>Now in the age of Defi, Ethereum & Rebasing, we are able to find new life in the ever so famous Dot Race with the ultimate on-chain game of Skill.    It is very simple:</div>
-            <div className='text-small text-gray mt-20 mb-20'>We start with the mechanics above and allow for Battle every 4 hours</div>
-            <div className='text-small text-gray'>the BATTLE function does the following: </div>
-            <div className='text-small text-gray'>1 – Checks  the current market price of RED and BLUE</div>
-            <div className='text-small text-gray'>2 – Determines the % discrepancy in price between RED and BLUE</div>
-            <div className='text-small text-gray'>3 – REBASE dynamically at 10% of the price discrepancy between RED and BLUE.</div>
+            <div className='text-small'>Now in the age of Defi, Ethereum & Rebasing, we are able to find new life in the ever so famous Dot Race with the ultimate on-chain game of Skill.    It is very simple:</div>
+            <div className='text-small mt-20 mb-20'>We start with the mechanics above and allow for Battle every 4 hours</div>
+            <div className='text-small'>the BATTLE function does the following: </div>
+            <div className='text-small'>1 – Checks  the current market price of RED and BLUE</div>
+            <div className='text-small'>2 – Determines the % discrepancy in price between RED and BLUE</div>
+            <div className='text-small'>3 – REBASE dynamically at 10% of the price discrepancy between RED and BLUE.</div>
           </div>
         </div>
 
@@ -108,13 +108,13 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
             <div className='text-large'>BUT The Players Influence the Game!</div>
           </div>
           <div className='flex-h mb-30'>
-            <div className='wp-50 mr-120'>
-              <div className='text-small text-gray'>What makes the game interesting is that any player can MODIFY the Boost Rate. The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask. It is set to a range of 5%-15% with infinite up & down moves possible by the players</div>
+            <div className='wp-50 pr-50'>
+              <div className='text-small'>What makes the game interesting is that any player can MODIFY the Boost Rate. The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask. It is set to a range of 5%-15% with infinite up & down moves possible by the players</div>
             </div>
             <div className='wp-50'>
-              <div className='text-small text-gray mb-10'>There are two ways to play the game:</div>
-              <div className='text-small text-gray'>1. Pick a side and watch the race  Choose Red/Choose Blue (links to farms)</div>
-              <div className='text-small text-gray'>2. Trade, Boost & Modify to WIN!</div>
+              <div className='text-small mb-10'>There are two ways to play the game:</div>
+              <div className='text-small'>1. Pick a side and watch the race  Choose Red/Choose Blue (links to farms)</div>
+              <div className='text-small'>2. Trade, Boost & Modify to WIN!</div>
             </div>
           </div>
         </div>

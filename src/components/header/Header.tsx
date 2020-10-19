@@ -24,13 +24,13 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
   return (
     <Container>
       <div className="nav-header">
-        <div className="center-v">
-			    <img className='nav-header__logo' src={Logo} width='175' alt='DOT' onClick={() => history.push('/')} />
-        </div>
+        <IconButton onClick={() => history.push('/')}>
+			    <img src={Logo} width='175' alt='DOT' />
+        </IconButton>
         <div className="flex-h">
           <Button className='btn-text' onClick={() => history.push('/')} >HOMEPAGE</Button>
           <Button className='btn-text' onClick={() => history.push('/rules')} >RULES</Button>
-          <Button className='btn-text' onClick={() => history.push('/about')} >FAQ</Button>
+          <Button className='btn-text' onClick={() => history.push('/dashboard')} >RACE</Button>
           <Button className='btn-text' onClick={() => history.push('/farm')} >FARM</Button>
           <Button className='btn-text' onClick={() => history.push('/stats')} >STATS</Button>
         </div>

@@ -14,9 +14,11 @@ const Footer: React.FC = () => {
             <img className='nav-header__logo' src={Logo} width='175' alt='DOT' />
           </div>
           <div className="flex-h">
-            <Button className='btn-text text-gray' onClick={() => {}} >HOMEPAGE</Button>
-            <Button className='btn-text' onClick={() => {}} >Rules</Button>
-            <Button className='btn-text' onClick={() => {}} >FAQ</Button>
+            <Button className='btn-text' href='https://etherscan.io/token/0xe1240ac7bb51333510cbf37efd678ca46137f84b' >RED CONTRACT</Button>
+            <Button className='btn-text' href='https://etherscan.io/token/0x96B00208911d72eA9f10c3303fF319427A7884C9' >BLUE CONTRACT</Button>
+            <Button className='btn-text' href='' >UNISWAP</Button>
+            <Button className='btn-text' href='' >TWITTER</Button>
+            <Button className='btn-text' href='https://t.me/DotsFinance' >TELEGRAM</Button>
           </div>
         </div>
       </Container>
