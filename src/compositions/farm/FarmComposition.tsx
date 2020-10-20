@@ -9,11 +9,11 @@ import { selectAccount } from 'store/account/accountSelector';
 import PoolCard from './PoolCard';
 import BackgroundImage from 'assets/img/background.png';
 
-import Farm1Icon from 'assets/img/token-uni.png';
+import Farm1Icon from 'assets/img/token-blue.png';
 import Farm2Icon from 'assets/img/token-uni.png';
 import Farm3Icon from 'assets/img/token-yfi.png';
 import Farm4Icon from 'assets/img/token-link.png';
-import Farm5Icon from 'assets/img/token-uni.png';
+import Farm5Icon from 'assets/img/token-red.png';
 import Farm6Icon from 'assets/img/token-ytsla.png';
 import Farm7Icon from 'assets/img/token-meme.png';
 import Farm8Icon from 'assets/img/token-core.png';
@@ -34,7 +34,7 @@ const FarmComposition = () => {
   const [pool2APY, setPool2APY] = React.useState<number>(0);
   const [pool3APY, setPool3APY] = React.useState<number>(0);
   useEffect(() => {
-    coingeckoclient.getYtslaPrice().then(res => setTokenPrice(res));
+    
   });
   useEffect(() => {
     if (tokenPrice > 0) {
@@ -108,10 +108,10 @@ const FarmComposition = () => {
           </div>
 
 
-          <div className='center-h text-small text-gray mt-100 mb-50'>
+          <div className='center-h text-small text-gray mt-100'>
             Stake your “Red Hot” tokens to Choose & Earn Red
           </div>
-          <div className='center-h wp-100 mt-30 home-container'>
+          <div className='center-h wp-100 mt-50 home-container'>
             <PoolCard
               stakingToken={Config.RedLpToken}
               picture={Farm5Icon}

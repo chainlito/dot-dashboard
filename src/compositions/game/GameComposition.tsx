@@ -9,6 +9,8 @@ import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSu
 import { web3client } from 'lib';
 import { IconButton } from '@material-ui/core';
 import { numberWithDecimals } from 'utils';
+import moment from 'moment';
+import Config from 'config';
 
 import BackgroundImage from 'assets/img/background.png';
 import GetRedImage from 'assets/img/buttons/GetRed.png';
@@ -46,6 +48,7 @@ const GameComposition: React.FC<Props> = ({
 }: Props) => {
   const [boostRate, setBoostRate] = React.useState<number>(0);
   const [rebaseLag, setRebaseLag] = React.useState<number>(0);
+  const [timer, setTimer] = React.useState<number>(Config.Orchestrator.rebase.offset - moment().unix() % Config.Orchestrator.rebase.offset);
 
   useEffect(() => { boostLoadAllowance(); }, [account, boostLoadAllowance]);
   useEffect(() => {
@@ -55,6 +58,10 @@ const GameComposition: React.FC<Props> = ({
       web3client.getBoostRate().then(res => setBoostRate(res));
       web3client.getRebaseLag().then(res => setRebaseLag(res));
     }, 30000);
+    return () => clearInterval(timeInterval);
+  });
+  useEffect(() => {
+    const timeInterval = setInterval(() => setTimer(Config.Orchestrator.rebase.offset - moment().unix() % Config.Orchestrator.rebase.offset), 1000);
     return () => clearInterval(timeInterval);
   });
 
@@ -105,7 +112,7 @@ const GameComposition: React.FC<Props> = ({
           <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
           <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
-          <span className='text-green'>Next rebase: </span><b>3:26:56</b>
+          <span className='text-green'>Next rebase: </span><b>{(timer / 3600).toFixed()}:{((timer % 3600) / 60).toFixed()}:{timer % 60}</b>
         </div>
         <div className='flex-h mt-20'>
           <GameTrade history={rebaseHistory} />
