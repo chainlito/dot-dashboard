@@ -57,7 +57,7 @@ async function getTotalSupply(contract: any,): Promise<number> {
 }
 
 async function rebase(from: string) {
-  await orchestratorContract.methods.rebase().send({ from })
+  await orchestratorContract.methods.rebase().send({ from, gas: 120000 })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });
@@ -95,7 +95,7 @@ async function boostUp(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
   await orchestratorContract.methods.boostUp().send({
     from,
-    gas: 1200000,
+    gas: 60000,
     value: boostRate * Math.pow(10, 17)
   })
     .on('error', function(error: any, receipt: any) {
@@ -107,7 +107,7 @@ async function boostDown(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
   await orchestratorContract.methods.boostDown().send({
     from,
-    gas: 1200000,
+    gas: 60000,
     value: boostRate * Math.pow(10, 17)
   })
     .on('error', function(error: any, receipt: any) {
