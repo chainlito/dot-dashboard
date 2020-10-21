@@ -11,10 +11,10 @@ const RulesComposition: React.FC = () => {
     <img className='img-background' src={BackgroundImage} alt='background' />
       <Header />
       <Container>
-        <div className='center-h text-large mt-50 mb-50'>Rules</div>
+        <div className='center-h text-large rules-title'>Rules</div>
         <div className='rules-container'>
-          <div className='flex-h mb-70'>
-            <div className='wp-50 mr-50'>
+          <div className='rules-item'>
+            <div className='rules-item__left'>
               <div className='text-large text-red mb-20'>Rule №1</div>
               <div className='text-small text-gray'>
                 <b className='text-normal'>Supply will always be Equal 2,000,000.<br/></b>
@@ -23,15 +23,15 @@ const RulesComposition: React.FC = () => {
                 </span>
               </div>
             </div>
-            <div className='wp-50'>
-              <img src={Rule1Image} alt='rule1' />
+            <div className='rules-item__right'>
+              <img src={Rule1Image} alt='rule1' width='100%' />
             </div>
           </div>
-          <div className='flex-h mb-70'>
-            <div className='wp-50'>
-              <img src={Rule2Image} alt='rule2' />
+          <div className='rules-item'>
+            <div className='rules-item__left'>
+              <img src={Rule2Image} alt='rule2' width='100%' />
             </div>
-            <div className='wp-50 ml-50'>
+            <div className='rules-item__right'>
               <div className='text-large text-red mb-20'>Rule №2</div>
               <div className='text-small text-gray'>
                 <b className='text-normal'>A Rebase is possible every 4 hours<br/></b>
@@ -40,8 +40,8 @@ const RulesComposition: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className='flex-h'>
-            <div className='wp-50 mr-50'>
+          <div className='rules-item'>
+            <div className='rules-item__left'>
               <div className='text-large text-red mb-20'>Rule №3</div>
               <div className='text-small text-gray'>
                 <b className='text-normal'>YOU influence the game<br/></b>
@@ -51,8 +51,8 @@ const RulesComposition: React.FC = () => {
                 The first move after a rebase wil cost .1eth, with each additional move .1eth additional
               </div>
             </div>
-            <div className='wp-50'>
-              <img src={Rule3Image} alt='rule3' />
+            <div className='rules-item__right'>
+              <img src={Rule3Image} alt='rule3' width='100%' />
             </div>
           </div>
         </div>
