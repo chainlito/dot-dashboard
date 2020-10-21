@@ -15,12 +15,13 @@ enum BOOST {
 interface Props {
   boostRate: number;
   rebaseLag: number;
+  rebaseEnabled: boolean;
   boostUp: () => void;
   boostDown: () => void;
   rebase: () => void;
 }
 
-const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, rebase }: Props) => {
+const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boostUp, boostDown, rebase }: Props) => {
   const [boost, setBoost] = React.useState<BOOST>(BOOST.NOBOOST);
 
   const handleClickBoostUp = () => {
@@ -69,6 +70,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, boostUp, boostDown, 
       <IconButton
         className='mt-20'
         onClick={() => rebase()}
+        disabled={!rebaseEnabled}
       >
         <img src={RebaseImage} alt='rebase' />
       </IconButton>

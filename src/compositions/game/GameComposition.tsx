@@ -87,7 +87,7 @@ const GameComposition: React.FC<Props> = ({
       <Container>
         <div className='game-header mt-50'>
           <IconButton
-            href='#'
+            href='https://app.uniswap.org/#/swap?inputCurrency=0x96b00208911d72ea9f10c3303ff319427a7884c9&outputCurrency=0xe1240ac7bb51333510cbf37efd678ca46137f84b'
             target='_blank'
           >
             <img src={SwapRedBlueImage} height={40} alt='Swap Red/Blue' />
@@ -119,6 +119,7 @@ const GameComposition: React.FC<Props> = ({
           <GameBoost
             boostRate={boostRate}
             rebaseLag={rebaseLag}
+            rebaseEnabled={timer >= (Config.Orchestrator.rebase.offset - Config.Orchestrator.rebase.length)}
             boostUp={boostUp}
             boostDown={boostDown}
             rebase={rebase}
