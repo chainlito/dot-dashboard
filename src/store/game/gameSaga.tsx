@@ -101,7 +101,7 @@ function* rebase() {
 
     const lastTime = yield web3client.getLastRebaseTimestamp();
     if (lastTime + Config.Orchestrator.rebase.length >= moment().unix()) {
-      alert('Someone already called rebase');
+      alert('The race has already rebased for this round.  Please come back in (Live counter) to rebase again.');
       return;
     }
     const rebaseLag = yield web3client.getRebaseLag();

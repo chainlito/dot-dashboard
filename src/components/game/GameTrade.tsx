@@ -74,7 +74,7 @@ const GameTrade: React.FC<Props> = ({ history }: Props) => {
               },
               ticks: {
                   suggestedMax: 10,
-                  beginAtZero: true
+                  beginAtZero: true,
               }
             }]
           },
