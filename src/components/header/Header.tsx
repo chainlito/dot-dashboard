@@ -24,7 +24,7 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
   return (
     <Container>
       <div className="nav-header">
-        <IconButton onClick={() => history.push('/')}>
+        <IconButton className='nav-header__logo' onClick={() => history.push('/')}>
 			    <img src={Logo} width='175' alt='DOT' />
         </IconButton>
         <div className="flex-h">
@@ -42,7 +42,7 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
             target='_blank'
           >{truncateAddress(account.address)}</Button>
         ) : (
-          <IconButton onClick={loadAccount} >
+          <IconButton onClick={loadAccount} className='nav-header__button' >
             <img src={ConnectWalletImage} alt='button' />
           </IconButton>
         )}

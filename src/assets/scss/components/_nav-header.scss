@@ -26,5 +26,15 @@
 
   &__logo {
     cursor: pointer;
+
+    @media screen and (max-width: $tablet) {
+      margin-bottom: 15px !important;
+    }
+  }
+
+  &__button {
+    @media screen and (max-width: $tablet) {
+      display: none !important;
+    }
   }
 }
