@@ -108,11 +108,12 @@ const GameComposition: React.FC<Props> = ({
           </IconButton>
         </div>
         <div className='text-small mt-30'>
-          <span className='text-red'>RED price: </span><b>$1.04</b> &nbsp;| &nbsp;
-          <span className='text-blue'>BLUE price: </span><b>$2.04</b> &nbsp;| &nbsp;
+          <span className='text-red'>RED price: </span><b>Coming Soon</b> &nbsp;| &nbsp;
+          <span className='text-blue'>BLUE price: </span><b>Coming Soon</b> &nbsp;| &nbsp;
           <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
-          <span className='text-green'>Next rebase: </span><b>{Math.floor(timer / 3600)}:{Math.floor((timer % 3600) / 60)}:{timer % 60}</b>
+          <span className='text-green'>Next rebase: </span>
+          <b>{('0' + Math.floor(timer / 3600)).slice(-2)}:{('0' + Math.floor((timer % 3600) / 60)).slice(-2)}:{('0' + timer % 60).slice(-2)}</b>
         </div>
         <div className='flex-h mt-20'>
           <GameTrade history={rebaseHistory} />
