@@ -95,7 +95,7 @@ async function boostUp(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
   await orchestratorContract.methods.boostUp().send({
     from,
-    gas: 60000,
+    gas: 120000,
     value: boostRate * Math.pow(10, 17)
   })
     .on('error', function(error: any, receipt: any) {
@@ -107,7 +107,7 @@ async function boostDown(from: string) {
   const boostRate = await orchestratorContract.methods.boost().call();
   await orchestratorContract.methods.boostDown().send({
     from,
-    gas: 60000,
+    gas: 120000,
     value: boostRate * Math.pow(10, 17)
   })
     .on('error', function(error: any, receipt: any) {

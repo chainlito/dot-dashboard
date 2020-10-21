@@ -47,7 +47,7 @@ const GameHistory: React.FC<Props> = ({
 
   return (
     <div className='flex-h'>
-      {rebaseHistory && rebaseHistory.length > 0 ? (
+      {rebaseHistory  ? (
         <TableContainer component={Paper} className='game-history'>
           <Table>
             <TableHead>
