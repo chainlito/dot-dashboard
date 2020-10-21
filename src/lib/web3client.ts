@@ -63,6 +63,11 @@ async function rebase(from: string) {
     });
 }
 
+async function getLastRebaseTimestamp() {
+  const result = await policyContract.methods.lastRebaseTimestampSec().call();
+  return parseInt(result);
+}
+
 function promisify(fn: (cb: any) => any): Promise<any> {
   return new Promise((resolve, reject) => {
       fn((err: any, result: any) => {
@@ -189,6 +194,7 @@ export default {
   getBalance,
   getTotalSupply,
   rebase,
+  getLastRebaseTimestamp,
   allowance,
   approve,
   // Orchestrator methods

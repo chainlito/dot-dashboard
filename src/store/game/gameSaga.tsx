@@ -1,5 +1,6 @@
 import { put, takeLatest, fork, select } from 'redux-saga/effects';
 import { ActionType, RebaseHistory, RootState } from 'types';
+import moment from 'moment';
 
 import { web3client, apiclient } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
@@ -98,6 +99,11 @@ function* rebase() {
     const account = yield selectAccount(state);
     if (!account) return;
 
+    const lastTime = yield web3client.getLastRebaseTimestamp();
+    if (lastTime + Config.Orchestrator.rebase.length >= moment().unix()) {
+      alert('Someone already called rebase');
+      return;
+    }
     const rebaseLag = yield web3client.getRebaseLag();
     yield web3client.rebase(account.address);
     yield apiclient.pushHistory(rebaseLag);
