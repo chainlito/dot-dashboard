@@ -100,8 +100,12 @@ function* rebase() {
     if (!account) return;
 
     const lastTime = yield web3client.getLastRebaseTimestamp();
-    if (lastTime + Config.Orchestrator.rebase.length >= moment().unix()) {
-      alert('The race has already rebased for this round.  Please come back in (Live counter) to rebase again.');
+    const now = moment().unix()
+    if (lastTime + Config.Orchestrator.rebase.length >= now) {
+      const timer = Config.Orchestrator.rebase.offset - now % Config.Orchestrator.rebase.offset;
+      const timerTxt = `${('0' + Math.floor(timer / 3600)).slice(-2)}:${('0' + Math.floor((timer % 3600) / 60)).slice(-2)}:${('0' + timer % 60).slice(-2)}`;
+
+      alert(`The race has already rebased for this round.  Please come back in ${timerTxt} to rebase again.`);
       return;
     }
     const rebaseLag = yield web3client.getRebaseLag();
