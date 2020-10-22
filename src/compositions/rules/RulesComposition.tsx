@@ -27,17 +27,17 @@ const RulesComposition: React.FC = () => {
               <img src={Rule1Image} alt='rule1' width='100%' />
             </div>
           </div>
-          <div className='rules-item'>
-            <div className='rules-item__left'>
-              <img src={Rule2Image} alt='rule2' width='100%' />
-            </div>
-            <div className='rules-item__right'>
+          <div className='rules-item responsive'>
+            <div className='rules-item__right responsive'>
               <div className='text-large text-red mb-20'>Rule №2</div>
               <div className='text-small text-gray'>
                 <b className='text-normal'>A Rebase is possible every 4 hours<br/></b>
                 Although the total supply of RED and BLUE will always be exactly 2,000,000,  <b>the supplies can be “re-balanced”  every 4 hours by anybody that calls the BATTLE function. </b><br/>
                 The Players Call the Battleshots!
               </div>
+            </div>
+            <div className='rules-item__left responsive'>
+              <img src={Rule2Image} alt='rule2' width='100%' />
             </div>
           </div>
           <div className='rules-item'>

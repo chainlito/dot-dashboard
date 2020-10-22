@@ -63,12 +63,12 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
         <br/>
         <div className='home-stats'>
           <div className='home-stats__info'>
-            <div className='text-small text-gray mb-5'>Game Started:</div>
-            <div className='text-medium'>--:--:----</div>
+            <div className='text-small text-gray mb-5'>Blue's Price:</div>
+            <div className='text-medium'>Coming Soon</div>
           </div>
           <div className='home-stats__info'>
-            <div className='text-small text-gray mb-5'>Days to End Game:</div>
-            <div className='text-medium'>---</div>
+            <div className='text-small text-gray mb-5'>Red's Price:</div>
+            <div className='text-medium'>Coming Soon</div>
           </div>
           <div className='home-stats__info'>
             <div className='text-small text-gray mb-5'>Blue's Rate:</div>
@@ -88,11 +88,8 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
             <img src={SEO1Image} alt='SEO' width='100%' />
           </div>
         </div>
-        <div className='home-seo'>
-          <div className='home-seo__left'>
-            <img src={SEO2Image} alt='SEO' width='100%' />
-          </div>
-          <div className='home-seo__right'>
+        <div className='home-seo responsive'>
+          <div className='home-seo__right responsive'>
             <div className='text-large mb-30'>What is the Dots game?</div>
             <div className='text-small'>Now in the age of Defi, Ethereum & Rebasing, we are able to find new life in the ever so famous Dot Race with the ultimate on-chain game of Skill.    It is very simple:</div>
             <div className='text-small mt-20 mb-20'>We start with the mechanics above and allow for Battle every 4 hours</div>
@@ -100,6 +97,9 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
             <div className='text-small'>1 – Checks  the current market price of RED and BLUE</div>
             <div className='text-small'>2 – Determines the % discrepancy in price between RED and BLUE</div>
             <div className='text-small'>3 – REBASE dynamically at 10% of the price discrepancy between RED and BLUE.</div>
+          </div>
+          <div className='home-seo__left'>
+            <img src={SEO2Image} alt='SEO' width='100%' />
           </div>
         </div>
 

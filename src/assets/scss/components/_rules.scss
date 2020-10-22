@@ -40,15 +40,33 @@
         width: 100%;
         margin-right: 0;
       }
+
+      &.responsive {
+        @media screen and (max-width: $tablet) {
+          width: 100%;
+          margin-right: 0;
+          margin-top: 20px;
+        }
+      }
     }
 
     &__right {
-      width: calc(50% - 50px);
+      width: 50%;
       
       @media screen and (max-width: $tablet) {
         width: 100%;
         margin-top: 20px;
       }
+
+      &.responsive {
+        @media screen and (max-width: $tablet) {
+          width: 100%;
+        }
+      }
+    }
+
+    &.responsive {
+      flex-direction: row-reverse;
     }
   }
 }

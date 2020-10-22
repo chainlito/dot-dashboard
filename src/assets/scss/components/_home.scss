@@ -162,6 +162,18 @@
         margin-left: 0;
         margin-top: 20px;
       }
+
+      &.responsive {
+        @media screen and (max-width: $tablet) {
+          width: 100%;
+          margin-left: 0;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    &.responsive {
+      flex-direction: row-reverse;
     }
   }
 
