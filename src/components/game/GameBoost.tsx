@@ -26,7 +26,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
 
   const handleClickBoostUp = () => {
     if (rebaseLag >= 15) {
-      alert('Boost rate is over max.');
+      alert('The Maximum Boost is 15%');
     } else {
       setBoost(BOOST.RAISE);
     }
@@ -34,7 +34,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
 
   const handleClickBoostDown = () => {
     if (rebaseLag <= 5) {
-      alert('Boost rate is under min.');
+      alert('The Minimum boost is 5%');
     } else {
       setBoost(BOOST.REDUCE);
     }
@@ -51,8 +51,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
         </IconButton>
       </div>
       <div className='mt-30 text-small'>Current Boost = {rebaseLag}%</div>
-      <div className='text-small text-gray'>The Maximum Boost is 15%</div>
-      <div className='text-small text-gray'>The Minimum boost is 5%</div>
+      <div className='text-small text-gray'>Min 5% ~ Max 15%</div>
       
       <IconButton
         className='mt-20'
