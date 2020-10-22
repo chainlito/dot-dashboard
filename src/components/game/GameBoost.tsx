@@ -51,7 +51,8 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
         </IconButton>
       </div>
       <div className='mt-30 text-small'>Current Boost = {rebaseLag}%</div>
-      <div className='text-small text-gray'>Min 5% ~ Max 15%</div>
+      <div className='text-small text-gray'>The Maximum Boost is 15%</div>
+      <div className='text-small text-gray'>The Minimum boost is 5%</div>
       
       <IconButton
         className='mt-20'
