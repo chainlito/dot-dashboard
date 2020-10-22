@@ -45,9 +45,9 @@ const RulesComposition: React.FC = () => {
               <div className='text-large text-red mb-20'>Rule №3</div>
               <div className='text-small text-gray'>
                 <b className='text-normal'>YOU influence the game<br/></b>
-                What makes the game interesting is that any player can MODIFY the Boost Rate<br/>
-                The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask<br/>
-                It is set to a range of 5%-15% with infinite up & down moves possible by the players<br/>
+                What makes the game interesting is that any player can MODIFY the Boost Rate. 
+                The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask. 
+                It is set to a range of 5%-15% with infinite up & down moves possible by the players. 
                 The first move after a rebase wil cost .1eth, with each additional move .1eth additional
               </div>
             </div>
