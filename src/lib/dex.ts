@@ -21,29 +21,17 @@ const getEthPrice = async () => {
 }
 
 const getRedTokenPrice = async () => {
-  const response = await axios({
-    url: `${PROXY}${API_URL}/uniswap/pool?pairSelected=${Config.RedLpToken.address}`,
-    method: 'GET',
-    headers: {
-      authorization: `Bearer ${API_KEY}`,
-    }
-  });
-  const rate = response.data.data.pair.reserve1 / response.data.data.pair.reserve0;
-  const ethPrice = await getEthPrice();
-  return rate * ethPrice;
+  const redSupply = await web3client.getBalance(web3client.redTokenContract, Config.RedLpToken.address);
+  const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.RedLpToken.address);
+  const ethPrice = await coingecko.getEthPrice();
+  return ethPrice * wethBalance / redSupply;
 };
 
 const getBlueTokenPrice = async () => {
-  const response = await axios({
-    url: `${PROXY}${API_URL}/uniswap/pool?pairSelected=${Config.BlueLpToken.address}`,
-    method: 'GET',
-    headers: {
-      authorization: `Bearer ${API_KEY}`,
-    }
-  });
-  const rate = response.data.data.pair.reserve1 / response.data.data.pair.reserve0;
-  const ethPrice = await getEthPrice();
-  return rate * ethPrice;
+  const blueSupply = await web3client.getBalance(web3client.blueTokenContract, Config.BlueLpToken.address);
+  const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.BlueLpToken.address);
+  const ethPrice = await coingecko.getEthPrice();
+  return ethPrice * wethBalance / blueSupply;
 };
 
 const getRedLpTokenPrice = async () => {

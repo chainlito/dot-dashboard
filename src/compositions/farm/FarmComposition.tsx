@@ -29,37 +29,77 @@ type Props = StateFromProps & DispatchFromProps & OwnProps;
 
 const FarmComposition = () => {
   const [redPrice, setRedPrice] = React.useState<number>(0);
-  const [tokenPrice, setTokenPrice] = React.useState<number>(0);
+  const [bluePrice, setBluePrice] = React.useState<number>(0);
   const [pool1APY, setPool1APY] = React.useState<number>(0);
   const [pool2APY, setPool2APY] = React.useState<number>(0);
   const [pool3APY, setPool3APY] = React.useState<number>(0);
+  const [pool4APY, setPool4APY] = React.useState<number>(0);
+  const [pool5APY, setPool5APY] = React.useState<number>(0);
+  const [pool6APY, setPool6APY] = React.useState<number>(0);
+  const [pool7APY, setPool7APY] = React.useState<number>(0);
+  const [pool8APY, setPool8APY] = React.useState<number>(0);
   useEffect(() => {
     
   });
   useEffect(() => {
-    if (tokenPrice > 0) {
-      coingeckoclient.getMemePrice().then(price => {
+    if (bluePrice > 0) {
+      dexclient.getRedLpTokenPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool1Contract).then(res => {
-            const roi = res * tokenPrice / Math.pow(10, 28) / price * 86400 * 365 * 100;
-            setPool1APY(roi);
+          const roi = res * bluePrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          setPool1APY(roi);
         });
       });
 
       coingeckoclient.getUniPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool2Contract).then(res => {
-            const roi = res * tokenPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
-            setPool2APY(roi);
+          const roi = res * bluePrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          setPool2APY(roi);
         });
-      });
-
-      dexclient.getRedLpTokenPrice().then(price => {
+      })
+      coingeckoclient.getYfiPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool3Contract).then(res => {
-          const roi = res * tokenPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          const roi = res * bluePrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
           setPool3APY(roi);
         });
       });
+
+      coingeckoclient.getLinkPrice().then(price => {
+        web3client.poolGetRewardRate(web3client.pool4Contract).then(res => {
+            const roi = res * bluePrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+            setPool4APY(roi);
+        });
+      });
     }
-  }, [tokenPrice]);
+
+    if (redPrice > 0) {
+      dexclient.getRedLpTokenPrice().then(price => {
+        web3client.poolGetRewardRate(web3client.pool5Contract).then(res => {
+          const roi = res * redPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          setPool5APY(roi);
+        });
+      });
+
+      coingeckoclient.getYtslaPrice().then(price => {
+        web3client.poolGetRewardRate(web3client.pool6Contract).then(res => {
+          const roi = res * redPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          setPool6APY(roi);
+        });
+      })
+      coingeckoclient.getMemePrice().then(price => {
+        web3client.poolGetRewardRate(web3client.pool7Contract).then(res => {
+          const roi = res * redPrice / Math.pow(10, 28) / price * 86400 * 365 * 100;
+          setPool7APY(roi);
+        });
+      });
+
+      coingeckoclient.getCorePrice().then(price => {
+        web3client.poolGetRewardRate(web3client.pool8Contract).then(res => {
+            const roi = res * redPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+            setPool8APY(roi);
+        });
+      });
+    }
+  }, [redPrice, bluePrice]);
 
   return (
     <React.Fragment>
