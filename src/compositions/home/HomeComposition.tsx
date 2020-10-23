@@ -109,7 +109,7 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
           </div>
           <div className='flex-h mb-30'>
             <div className='home-guide__left'>
-              <div className='text-small'>What makes the game interesting is that any player can MODIFY the Boost Rate. The Boost rate can be modified by pressing +/- & interacting with the contract through Metamask. It is set to a range of 5%-15% with infinite up & down moves possible by the players</div>
+              <div className='text-small'>What makes the game interesting is that any player can MODIFY the Rebase Lag. The Rebase Lag can be modified by pressing +/- & interacting with the contract through Metamask. It is set to a range of 5%-15% with infinite up & down moves possible by the players</div>
             </div>
             <div className='home-guide__right'>
               <div className='text-small mb-10'>There are two ways to play the game:</div>

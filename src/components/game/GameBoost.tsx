@@ -26,7 +26,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
 
   const handleClickBoostUp = () => {
     if (rebaseLag >= 15) {
-      alert('The Maximum Boost is 15%');
+      alert('The Maximum Lag is 15');
     } else {
       setBoost(BOOST.RAISE);
     }
@@ -34,7 +34,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
 
   const handleClickBoostDown = () => {
     if (rebaseLag <= 5) {
-      alert('The Minimum boost is 5%');
+      alert('The Minimum Lag is 5');
     } else {
       setBoost(BOOST.REDUCE);
     }
@@ -50,8 +50,8 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
           <img src={BoostUpImage} alt='BoostDown' />
         </IconButton>
       </div>
-      <div className='mt-30 text-small'>Current Boost = {rebaseLag}%</div>
-      <div className='text-small text-gray'>Min 5% ~ Max 15%</div>
+      <div className='mt-30 text-small'>Current Lag = {rebaseLag}%</div>
+      <div className='text-small text-gray'>Min 5 ~ Max 15</div>
       
       <IconButton
         className='mt-20'
