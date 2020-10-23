@@ -38,14 +38,14 @@ const getRedLpTokenPrice = async () => {
   const totalSupply = await web3client.getTotalSupply(web3client.redLpTokenContract);
   const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.RedLpToken.address);
   const ethPrice = await coingecko.getEthPrice();
-  return ethPrice * wethBalance / totalSupply;
+  return 2 * ethPrice * wethBalance / totalSupply;
 }
 
 const getBlueLpTokenPrice = async () => {
   const totalSupply = await web3client.getTotalSupply(web3client.blueLpTokenContract);
   const wethBalance = await web3client.getBalance(web3client.wethTokenContract, Config.BlueLpToken.address);
   const ethPrice = await coingecko.getEthPrice();
-  return ethPrice * wethBalance / totalSupply;
+  return 2 * ethPrice * wethBalance / totalSupply;
 }
 
 export default {
