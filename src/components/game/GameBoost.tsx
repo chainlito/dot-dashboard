@@ -50,7 +50,7 @@ const GameBoost: React.FC<Props> = ({ boostRate, rebaseLag, rebaseEnabled, boost
           <img src={BoostUpImage} alt='BoostDown' />
         </IconButton>
       </div>
-      <div className='mt-30 text-small'>Current Lag = {rebaseLag}%</div>
+      <div className='mt-30 text-small'>Current Lag = {rebaseLag}</div>
       <div className='text-small text-gray'>Min 5 ~ Max 15</div>
       
       <IconButton
