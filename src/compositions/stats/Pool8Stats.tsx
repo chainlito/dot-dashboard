@@ -28,12 +28,12 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
   const [rate, setRate] = React.useState<number>(0);
 
   useEffect(() => {
-    web3client.getTotalSupply(web3client.pool2Contract)
+    web3client.getTotalSupply(web3client.pool8Contract)
 			.then(res => setTotalStaked(res));
 		if (account) {
-			web3client.getBalance(web3client.pool2Contract, account.address)
+			web3client.getBalance(web3client.pool8Contract, account.address)
 				.then(res => setStaked(res));
-			web3client.poolGetEarned(web3client.pool2Contract, account.address)
+			web3client.poolGetEarned(web3client.pool8Contract, account.address)
 				.then(res => setEarned(res));
 		}
     coingeckoclient.getCorePrice().then(res => setToken1Price(res));
@@ -41,7 +41,7 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 
   useEffect(() => {
     if (token1Price > 0) {
-      web3client.poolGetRewardRate(web3client.pool2Contract).then(res => {
+      web3client.poolGetRewardRate(web3client.pool8Contract).then(res => {
 				if (tokenPrice > 0) {
 					const roi = res * tokenPrice / Math.pow(10, 18) / token1Price;
 					setRoiUnit(roi);
