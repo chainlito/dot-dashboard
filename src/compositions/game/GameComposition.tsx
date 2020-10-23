@@ -100,14 +100,14 @@ const GameComposition: React.FC<Props> = ({
           </IconButton>
           <IconButton
             className='mr-20'
-            href='#'
+            href='https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0x96b00208911d72ea9f10c3303ff319427a7884c9'
             target='_blank'
           >
             <img src={GetBlueImage} height={40} alt='Get Blue' />
           </IconButton>
           <IconButton
             className='mr-20'
-            href='#'
+            href='https://app.uniswap.org/#/swap?inputCurrency=ETH&outputCurrency=0xe1240ac7bb51333510cbf37efd678ca46137f84b'
             target='_blank'
           >
             <img src={GetRedImage} height={40} alt='Get Red' />

@@ -17,6 +17,7 @@ import RectChooseImage from 'assets/img/layouts/RectChoose.png';
 import SEO1Image from 'assets/img/seo/SEO1.png';
 import SEO2Image from 'assets/img/seo/SEO2.png';
 import SEO3Image from 'assets/img/seo/SEO3.png';
+import { dexclient } from 'lib';
 //import { web3client } from 'lib';
 
 interface StateFromProps {
@@ -31,9 +32,20 @@ interface OwnProps {}
 type Props = StateFromProps & DispatchFromProps & OwnProps & RouteComponentProps;
 
 export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, history }: Props) => {
+  const [redPrice, setRedPrice] = React.useState<number>(0);
+  const [bluePrice, setBluePrice] = React.useState<number>(0);
   const [totalSupply, setTotalSupply] = React.useState<number>(0);
   useEffect(() => setTotalSupply(redTotalSupply + blueTotalSupply), [redTotalSupply, blueTotalSupply]);
 
+  useEffect(() => {
+    dexclient.getBlueTokenPrice().then(res => setBluePrice(res));
+    dexclient.getRedTokenPrice().then(res => setRedPrice(res));
+    const timeInterval = setInterval(() => {
+      dexclient.getBlueTokenPrice().then(res => setBluePrice(res));
+      dexclient.getRedTokenPrice().then(res => setRedPrice(res));
+    }, 60 * 1000);
+    return () => clearInterval(timeInterval);
+  })
   return (
     <React.Fragment>
       <img className='img-background' src={BackgroundImage} alt='background' />
@@ -64,11 +76,11 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
         <div className='home-stats'>
           <div className='home-stats__info'>
             <div className='text-small text-gray mb-5'>Blue's Price:</div>
-            <div className='text-medium'>Coming Soon</div>
+            <div className='text-medium'>$ {bluePrice.toFixed(3)}</div>
           </div>
           <div className='home-stats__info'>
             <div className='text-small text-gray mb-5'>Red's Price:</div>
-            <div className='text-medium'>Coming Soon</div>
+            <div className='text-medium'>$ {redPrice.toFixed(3)}</div>
           </div>
           <div className='home-stats__info'>
             <div className='text-small text-gray mb-5'>Blue's Rate:</div>
