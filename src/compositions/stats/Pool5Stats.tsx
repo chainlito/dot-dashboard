@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Config from 'config';
 import { RootState } from 'types';
-import { coingeckoclient, web3client, dexclient } from 'lib';
+import { web3client, dexclient } from 'lib';
 import { numberWithDecimals } from 'utils';
 import { selectAccount } from 'store/account/accountSelector';
 

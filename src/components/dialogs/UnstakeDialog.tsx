@@ -47,18 +47,20 @@ const UnstakeDialog: React.FC<Props> = ({
   return (
     <Dialog onClose={onClose} open={open}>
         <DialogTitle>
-          {dialogTitle}
+          <span className='text-small text-black'>
+            {dialogTitle}
+          </span>
         </DialogTitle>
         <DialogContent>
-          <div className='mb-10'>
+          <div className='mb-10 text-small text-black'>
             Total staked {stakeToken.symbol} by Community is &nbsp;
             <b>{numberWithDecimals(totalStaked, stakeToken.decimals, Config.Utils.decimals)}</b>
           </div>
-          <span>
+          <span className='text-small text-black'>
             Your {stakeToken.symbol} Balance is&nbsp;
             <b>{numberWithDecimals(userBalance, stakeToken.decimals, Config.Utils.decimals)}</b>
           </span>
-          <span>
+          <span className='text-small text-black'>
             Your Staked {stakeToken.symbol} Balance is&nbsp;
             <b>{numberWithDecimals(staked, stakeToken.decimals, Config.Utils.decimals)}</b>
           </span>

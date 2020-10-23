@@ -12,7 +12,7 @@ import Pool5Stats from './Pool5Stats';
 import Pool6Stats from './Pool6Stats';
 import Pool7Stats from './Pool7Stats';
 import Pool8Stats from './Pool8Stats';
-import { coingeckoclient, dexclient } from 'lib';
+import { dexclient } from 'lib';
 import BackgroundImage from 'assets/img/background.png';
 
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Config from 'config';
 import { RootState } from 'types';
 import { numberWithDecimals } from 'utils';
-import { coingeckoclient, web3client, dexclient } from 'lib';
+import { web3client, dexclient } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
 
 
