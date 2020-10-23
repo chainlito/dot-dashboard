@@ -82,7 +82,7 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
         <div className='home-seo'>
           <div className='home-seo__left'>
             <div className='text-large mb-30'>A Race for Glory</div>
-            <div className='text-small'>When I was a child and we would go to the baseball games, the famous “dot races” on the JumboTron  would rule the 7th inning where  red and blue race around the “track”  with color commentary by the announcer.    Bets were places,  hearts were broken and  new lives were forged. </div>
+            <div className='text-small'>When I was a child and we would go to the baseball games, the famous “dot races” on the JumboTron  would rule the 7th inning where  red and blue race around the “track”  with color commentary by the announcer.    Bets were placed,  hearts were broken and  new lives were forged. </div>
           </div>
           <div className='home-seo__right'>
             <img src={SEO1Image} alt='SEO' width='100%' />
@@ -129,7 +129,7 @@ export const HomeComposition = ({ account, redTotalSupply, blueTotalSupply, hist
               <img src={ChooseRedImage} alt='ChooseRed' />
             </IconButton>
           </div>
-          <div className='center-h text-small op-50 mt-20'>*You can rechoose the team in any time</div>
+          <div className='center-h text-small op-50 mt-20'>*You can rechoose the team at any time</div>
         </div>
         <div className='mb-100' />
         <br />
