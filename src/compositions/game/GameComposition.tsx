@@ -6,7 +6,7 @@ import { selectAccount } from 'store/account/accountSelector';
 import { RootState } from 'types';
 import { gameBoostApprove, gameBoostLoadAllowance, gameBoostUp, gameBoostDown, gameRebase } from 'store/game/gameActions';
 import { selectGameBoostAllowed, selectGameRedTotalSupply, selectGameBlueTotalSupply, selectGameRebaseHistory } from 'store/game/gameSelector';
-import { web3client } from 'lib';
+import { web3client, dexclient } from 'lib';
 import { IconButton } from '@material-ui/core';
 import { numberWithDecimals } from 'utils';
 import moment from 'moment';
@@ -46,11 +46,17 @@ const GameComposition: React.FC<Props> = ({
   blueTotalSupply,
   rebaseHistory,
 }: Props) => {
+  const [redPrice, setRedPrice] = React.useState<number>(0);
+  const [bluePrice, setBluePrice] = React.useState<number>(0);
   const [boostRate, setBoostRate] = React.useState<number>(0);
   const [rebaseLag, setRebaseLag] = React.useState<number>(0);
   const [timer, setTimer] = React.useState<number>(Config.Orchestrator.rebase.offset - moment().unix() % Config.Orchestrator.rebase.offset);
 
   useEffect(() => { boostLoadAllowance(); }, [account, boostLoadAllowance]);
+  useEffect(() => {
+    dexclient.getBlueTokenPrice().then(res => setBluePrice(res));
+    dexclient.getRedTokenPrice().then(res => setRedPrice(res));
+  });
   useEffect(() => {
     web3client.getBoostRate().then(res => setBoostRate(res));
     web3client.getRebaseLag().then(res => setRebaseLag(res));
@@ -108,8 +114,8 @@ const GameComposition: React.FC<Props> = ({
           </IconButton>
         </div>
         <div className='text-small mt-30'>
-          <span className='text-red'>RED price: </span><b>Coming Soon</b> &nbsp;| &nbsp;
-          <span className='text-blue'>BLUE price: </span><b>Coming Soon</b> &nbsp;| &nbsp;
+          <span className='text-red'>RED price: </span><b>$ {redPrice.toFixed(3)}</b> &nbsp;| &nbsp;
+          <span className='text-blue'>BLUE price: </span><b>$ {bluePrice.toFixed(3)}</b> &nbsp;| &nbsp;
           <span className='text-red'>RED supply: </span><b>{numberWithDecimals(redTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-blue'>BLUE supply: </span><b>{numberWithDecimals(blueTotalSupply, 18, 3)}</b> &nbsp;| &nbsp;
           <span className='text-green'>Next rebase: </span>
