@@ -49,17 +49,19 @@ const StakeDialog: React.FC<Props> = ({
   return (
     <Dialog onClose={onClose} open={open}>
         <DialogTitle>
-          {dialogTitle}
+          <span className='text-small text-black'>
+            {dialogTitle}
+          </span>
         </DialogTitle>
         <DialogContent>
-          <div className='mb-10 text-small'>
+          <div className='mb-10 text-small text-black'>
             Community distributes <b>{poolBalance}</b>&nbsp; {rewardToken.symbol} as rewards
           </div>
-          <div className='mb-10'>
+          <div className='mb-10 text-black'>
             Total staked {stakeToken.symbol} by Community is &nbsp;
             <b>{numberWithDecimals(totalStaked, stakeToken.decimals, Config.Utils.decimals)}</b>
           </div>
-          <span>
+          <span className='text-black text-black'>
             Your {stakeToken.symbol} Balance is&nbsp;
             <b>{numberWithDecimals(userBalance, stakeToken.decimals, Config.Utils.decimals)}</b>&nbsp;
           </span>

@@ -76,8 +76,8 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
         totalStaked={totalStaked}
         userBalance={balance}
         dialogTitle={(
-          <div className="center-v">
-            <img className="logo-image" src={stakeTokenInfo.image} alt={stakeTokenInfo.name} />
+          <div className='center-v'>
+            <img src={stakeTokenInfo.image} alt={stakeTokenInfo.name} width={35} />
             <span className="logo-text">{`Stake ${stakeTokenInfo.symbol}`}</span>
           </div>
         )}
