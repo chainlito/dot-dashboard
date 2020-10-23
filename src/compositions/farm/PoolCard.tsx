@@ -36,7 +36,7 @@ const PoolCard: React.FC<Props> = ({ stakingToken, picture, poolUrl, apy, histor
           </div>
           <div className='center-h'>
             {apy ? (
-              <span className='text-error'>{`${apy.toFixed(2)}% APY`}</span>
+              <span className='text-small text-gray'>{`${apy.toFixed(2)}% APY`}</span>
             ) : (
               <span className='text-small text-gray'>Loading...</span>
             )}

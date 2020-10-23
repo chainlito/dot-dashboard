@@ -19,7 +19,6 @@ interface OwnProps {
 type Props = StateFromProps & DispatchFromProps & OwnProps;
 
 const Pool2Stats = ({ tokenPrice, account }: Props) => {
-  /*const [totalSupply, setTotalSupply] = React.useState<number>(0);*/
   const [token1Price, setToken1Price] = React.useState<number>(0);
 	const [totalStaked, setTotalStaked] = React.useState<number>(0);
 	const [staked, setStaked] = React.useState<number>(0);

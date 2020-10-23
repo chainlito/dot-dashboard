@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Config from 'config';
 import { RootState } from 'types';
-import { coingeckoclient, web3client } from 'lib';
+import { coingeckoclient, web3client, dexclient } from 'lib';
 import { numberWithDecimals } from 'utils';
 import { selectAccount } from 'store/account/accountSelector';
 
@@ -36,7 +36,8 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
 			web3client.poolGetEarned(web3client.pool5Contract, account.address)
 				.then(res => setEarned(res));
 		}
-    //coingeckoclient.getUniPrice().then(res => setToken1Price(res));
+		//coingeckoclient.getUniPrice().then(res => setToken1Price(res));
+		dexclient.getRedLpTokenPrice().then(res => setToken1Price(res));
 	});
 
   useEffect(() => {

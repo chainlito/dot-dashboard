@@ -43,7 +43,7 @@ const Pool2Stats = ({ tokenPrice, account }: Props) => {
     if (token1Price > 0) {
       web3client.poolGetRewardRate(web3client.pool7Contract).then(res => {
 				if (tokenPrice > 0) {
-					const roi = res * tokenPrice / Math.pow(10, 18) / token1Price;
+					const roi = res * tokenPrice / Math.pow(10, 28) / token1Price;
 					setRoiUnit(roi);
 				}
         setRate(res * staked / Math.pow(10, 36));

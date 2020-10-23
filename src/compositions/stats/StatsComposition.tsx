@@ -12,7 +12,7 @@ import Pool5Stats from './Pool5Stats';
 import Pool6Stats from './Pool6Stats';
 import Pool7Stats from './Pool7Stats';
 import Pool8Stats from './Pool8Stats';
-import { coingeckoclient } from 'lib';
+import { coingeckoclient, dexclient } from 'lib';
 import BackgroundImage from 'assets/img/background.png';
 
 
@@ -23,9 +23,11 @@ interface OwnProps {}
 type Props = StateFromProps & DispatchFromProps & OwnProps;
 
 const StatsComposition = () => {
-  const [price, setPrice] = React.useState<number>(0);
+  const [bluePrice, setBluePrice] = React.useState<number>(0);
+  const [redPrice, setRedPrice] = React.useState<number>(0);
   useEffect(() => {
-    coingeckoclient.getYtslaPrice().then(res => setPrice(res));
+    dexclient.getBlueTokenPrice().then(res => setBluePrice(res));
+    dexclient.getRedTokenPrice().then(res => setRedPrice(res));
   });
 
   return (
@@ -36,34 +38,34 @@ const StatsComposition = () => {
         <div className='screen-center flex-v mt-50 mb-100'>
           <div className='flex-h'>
             <div className='card halfcard mr-30'>
-              <Pool1Stats tokenPrice={0} />
+              <Pool1Stats tokenPrice={bluePrice} />
             </div>
             <div className='card halfcard mr-30'>
-              <Pool5Stats tokenPrice={0} />
-            </div>
-          </div>
-          <div className='flex-h mt-20'>
-            <div className='card halfcard mr-30'>
-              <Pool2Stats tokenPrice={0} />
-            </div>
-            <div className='card halfcard mr-30'>
-              <Pool6Stats tokenPrice={0} />
+              <Pool5Stats tokenPrice={redPrice} />
             </div>
           </div>
           <div className='flex-h mt-20'>
             <div className='card halfcard mr-30'>
-              <Pool3Stats tokenPrice={0} />
+              <Pool2Stats tokenPrice={bluePrice} />
             </div>
             <div className='card halfcard mr-30'>
-              <Pool7Stats tokenPrice={0} />
+              <Pool6Stats tokenPrice={redPrice} />
             </div>
           </div>
           <div className='flex-h mt-20'>
             <div className='card halfcard mr-30'>
-              <Pool4Stats tokenPrice={0} />
+              <Pool3Stats tokenPrice={bluePrice} />
             </div>
             <div className='card halfcard mr-30'>
-              <Pool8Stats tokenPrice={0} />
+              <Pool7Stats tokenPrice={redPrice} />
+            </div>
+          </div>
+          <div className='flex-h mt-20'>
+            <div className='card halfcard mr-30'>
+              <Pool4Stats tokenPrice={bluePrice} />
+            </div>
+            <div className='card halfcard mr-30'>
+              <Pool8Stats tokenPrice={redPrice} />
             </div>
           </div>
         </div>

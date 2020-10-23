@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Config from 'config';
 import { RootState } from 'types';
 import { numberWithDecimals } from 'utils';
-import { coingeckoclient, web3client } from 'lib';
+import { coingeckoclient, web3client, dexclient } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
 
 
@@ -13,7 +13,7 @@ interface StateFromProps {
 }
 interface DispatchFromProps {}
 interface OwnProps {
-  tokenPrice: number;
+	tokenPrice: number;
 }
 
 type Props = StateFromProps & DispatchFromProps & OwnProps;
@@ -35,13 +35,13 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
       web3client.poolGetEarned(web3client.pool1Contract, account.address)
         .then(res => setEarned(res));
     }
-    //coingeckoclient.getMemePrice().then(res => setToken1Price(res));
+		dexclient.getBlueLpTokenPrice().then(res => setToken1Price(res));
   });
   useEffect(() => {
     if (token1Price > 0) {
       web3client.poolGetRewardRate(web3client.pool1Contract).then(res => {
         if (tokenPrice > 0) {
-          const roi = res * tokenPrice / Math.pow(10, 28) / token1Price;
+          const roi = res * tokenPrice / Math.pow(10, 18) / token1Price;
           setRoiUnit(roi);
         }
         setRate(res * staked / Math.pow(10, 36));

@@ -39,7 +39,8 @@ const FarmComposition = () => {
   const [pool7APY, setPool7APY] = React.useState<number>(0);
   const [pool8APY, setPool8APY] = React.useState<number>(0);
   useEffect(() => {
-    
+    dexclient.getBlueTokenPrice().then(res => setBluePrice(res));
+    dexclient.getRedTokenPrice().then(res => setRedPrice(res))
   });
   useEffect(() => {
     if (bluePrice > 0) {
@@ -119,14 +120,14 @@ const FarmComposition = () => {
             <PoolCard
               stakingToken={Config.BlueLpToken}
               picture={Farm1Icon} poolUrl='/farm-bluelp'
-              apy={pool2APY}
+              apy={pool1APY}
               isRed={false}
               isHigh />
             <PoolCard
               stakingToken={Config.UniToken}
               picture={Farm2Icon}
               poolUrl='/farm-uni'
-              apy={pool1APY}
+              apy={pool2APY}
               isRed={false}
             />
           </div>
@@ -135,14 +136,14 @@ const FarmComposition = () => {
               stakingToken={Config.YfiToken}
               picture={Farm3Icon}
               poolUrl='/farm-yfi'
-              apy={pool1APY}
+              apy={pool3APY}
               isRed={false}
             />
             <PoolCard
               stakingToken={Config.LinkToken}
               picture={Farm4Icon}
               poolUrl='/farm-link'
-              apy={pool1APY}
+              apy={pool4APY}
               isRed={false}
             />
           </div>
@@ -156,14 +157,14 @@ const FarmComposition = () => {
               stakingToken={Config.RedLpToken}
               picture={Farm5Icon}
               poolUrl='/farm-redlp'
-              apy={pool1APY}
+              apy={pool5APY}
               isRed={true}
               isHigh />
             <PoolCard
               stakingToken={Config.YtslaToken}
               picture={Farm6Icon}
               poolUrl='/farm-ytsla'
-              apy={pool1APY}
+              apy={pool6APY}
               isRed={true}
             />
           </div>
@@ -172,14 +173,14 @@ const FarmComposition = () => {
               stakingToken={Config.MemeToken}
               picture={Farm7Icon}
               poolUrl='/farm-meme'
-              apy={pool1APY}
+              apy={pool7APY}
               isRed={true}
             />
             <PoolCard
               stakingToken={Config.CoreToken}
               picture={Farm8Icon}
               poolUrl='/farm-core'
-              apy={pool1APY}
+              apy={pool8APY}
               isRed={true}
             />
           </div>
