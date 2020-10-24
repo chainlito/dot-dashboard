@@ -71,8 +71,8 @@ const GameHistory: React.FC<Props> = ({
                   <TableCell>{history.boost_count}</TableCell>
                   <TableCell>{numberWithDecimals(history.supply_red, Config.RedToken.decimals, Config.Utils.decimals)}</TableCell>
                   <TableCell>{numberWithDecimals(history.supply_blue, Config.BlueToken.decimals, Config.Utils.decimals)}</TableCell>
-                  <TableCell>-</TableCell>
-                  <TableCell>-</TableCell>
+                  <TableCell>$ {history.price_red.toFixed(3)}</TableCell>
+                  <TableCell>$ {history.price_blue.toFixed(3)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
