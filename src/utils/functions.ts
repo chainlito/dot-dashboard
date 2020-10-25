@@ -58,3 +58,14 @@ export const getEstimatedPercent = (txCount: number) => {
   if (rate < 0.05) return 0.05;
   return rate;
 }
+
+export const formatPrice = (amount: number, truncate = -1) => {
+  const number = truncate !== -1 ? Math.round(amount * Math.pow(10, truncate)) / Math.pow(10, truncate) : amount;
+  const string = number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  if (string[0] === '-') {
+    return `-$${string.substr(1)}`;
+  }
+  // const string = number.toString();
+
+  return `$ ${string}`;
+};

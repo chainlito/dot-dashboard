@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Config from 'config';
 import { RootState } from 'types';
-import { numberWithDecimals } from 'utils';
+import { numberWithDecimals, formatPrice } from 'utils';
 import { web3client, dexclient } from 'lib';
 import { selectAccount } from 'store/account/accountSelector';
 
@@ -56,11 +56,11 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
       	<div className='text-small mb-10'>PRICES <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>
 	  		<div className='flex-h'>
       		<div className='text-tiny wp-50'>{`1 ${Config.BlueLpToken.symbol} =`}</div>
-	  			<div className='text-tiny text-gray'> {`$ ${numberWithDecimals(token1Price, 0, 2)}`}</div>
+	  			<div className='text-tiny text-gray'> {formatPrice(token1Price, 2)}</div>
 	  		</div>
 				<div className='flex-h'>
 					<div className='text-tiny wp-50'>{`1 ${Config.BlueToken.symbol} = `}</div>
-					<div className='text-tiny text-gray'> {`$ ${numberWithDecimals(tokenPrice, 0, 2)}`}</div>
+					<div className='text-tiny text-gray'> {formatPrice(tokenPrice, 2)}</div>
 				</div>
 				<br/>
 				<div className='text-small mb-10'>STAKING <span className='ybullets'> • • • • • • • • • • • • • • • • • • • • • • • • • •</span></div>	 
