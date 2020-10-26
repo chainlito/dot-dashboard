@@ -53,7 +53,7 @@ const FarmComposition = () => {
   });
   useEffect(() => {
     if (bluePrice > 0) {
-      dexclient.getRedLpTokenPrice().then(price => {
+      dexclient.getBlueLpTokenPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool1Contract).then(res => {
           const roi = res * bluePrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
           setPool1APY(roi);
