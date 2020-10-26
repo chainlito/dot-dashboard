@@ -26,8 +26,7 @@ import {
   selectPoolRewardTokenInfo
 } from 'store/pool/poolSelector';
 import { selectAccount } from 'store/account/accountSelector';
-import { getDateLeft, secondsToDays, secondsToHours, secondsToMinutes, secondsToSeconds, getEstimatedPercent } from 'utils';
-import { ethscanclient } from 'lib';
+import { getDateLeft, secondsToDays, secondsToHours, secondsToMinutes, secondsToSeconds } from 'utils';
 import BackgroundImage from 'assets/img/background.png';
 
 interface StateFromProps {
@@ -82,14 +81,14 @@ const PoolComposition: React.FC<Props> = ({
     return () => clearInterval(timeInterval);
   });
   useEffect(() => {
-    if (allowed) {
+    loadEarned(); loadStaked();
+    //if (allowed) {
       
-      loadEarned(); loadStaked();
-      ethscanclient.getTransactionsCount(poolInfo.address).then(res => 
-        setEstimatePercent(getEstimatedPercent(res)));
-      const timeInterval = setInterval(() => { loadEarned(); loadStaked(); ethscanclient.getTransactionsCount(poolInfo.address); }, 60000);
+      /*ethscanclient.getTransactionsCount(poolInfo.address).then(res => 
+        setEstimatePercent(getEstimatedPercent(res)));*/
+      const timeInterval = setInterval(() => { loadEarned(); loadStaked(); }, 60000);
       return () => clearInterval(timeInterval);
-    }
+    //}
   });
 
 
@@ -130,7 +129,7 @@ const PoolComposition: React.FC<Props> = ({
             <RewardAsset
               rewardToken={rewardTokenInfo}
               earned={earned}
-              percent={estimatePercent}
+              percent={1}
               onHarvest={harvest}
             />
             <StakeAsset

@@ -42,6 +42,20 @@
     }
   }
 
+  &-outlined {
+    border: 2px solid rgba(7, 0, 255, 0.75) !important;
+    color: $white !important;
+    padding: 5px !important;
+    min-width: 50px !important;
+    margin-left: 10px;
+    border-radius: 10px !important;
+    font-size: 10px !important;
+
+    &.Mui-disabled {
+      opacity: 0.5;
+    }
+  }
+
   &-text {
     color: $gray !important;
     font-style: normal;

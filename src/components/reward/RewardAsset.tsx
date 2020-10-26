@@ -23,25 +23,17 @@ export const RewardAsset = ({ earned, onHarvest, percent, rewardToken }: Props) 
           <div className='circle'>
             <img className="logo-image" src={rewardToken.image} alt={rewardToken.name} />
           </div>
-          <div className='center-h'>
-            <span className='text-tiny text-gray'>{`Low estimated ${rewardToken.symbol} earned`}</span>
-          </div>
-          <div className='center-h mb-10'>
+          <div className='center-h mt-50'>
             <span className='text-number'>
-              {numberWithDecimals(earned * (1 - percent), rewardToken.decimals, Config.Utils.decimals)}
+              {numberWithDecimals(earned, rewardToken.decimals, Config.Utils.decimals)}
             </span>
           </div>
           <div className='center-h'>
-            <span className='text-tiny text-gray'>{`High estimated ${rewardToken.symbol} earned`}</span>
-          </div>
-          <div className='center-h'>
-            <span className='text-number'>
-              {numberWithDecimals(earned * (1 + percent), rewardToken.decimals, Config.Utils.decimals)}
-            </span>
+            <span className='text-tiny text-gray'>{`Estimated ${rewardToken.symbol} earned`}</span>
           </div>
         </div>
         <div className='section'>
-          <div className='mt-20' />
+          <div className='mt-30' />
           <div className='center-h'>
             <Button
               variant='contained'

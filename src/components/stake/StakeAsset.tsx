@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardContent, Fab } from '@material-ui/core';
+import { Button, Card, CardContent } from '@material-ui/core';
 import Config from 'config';
 import { numberWithDecimals } from 'utils';
 import { StakeDialog, UnstakeDialog } from 'components';
@@ -40,32 +40,39 @@ export const StakeAsset = ({ totalStaked, staked, allowed, onApprove, onStake, o
             </span>
           </div>
           <div className='center-h mb-30'>
-            <span className='text-small'>{`${stakeTokenInfo.symbol} Staked`}</span>
+            <span className='text-tiny text-gray'>{`${stakeTokenInfo.symbol} Staked`}</span>
           </div>
         </div>
-        {!allowed ? (
-          <React.Fragment>
-            <div className='section'>
-              <div className='mt-20' />
-              <div className='center-h'>
-                <Button
-                  variant='contained'
-                  className='btn-primary'
-                  onClick={onApprove}
-                >
-                  {`Approve ${stakeTokenInfo.symbol}`}
-                </Button>
-              </div>
-            </div>
-          </React.Fragment>
-        ) : (
-          <div className='section'>
-            <div className='center-h mt-20'>
-              <Fab className='btn-fab mr-20' disabled={staked <= 0} onClick={() => setUnstakeDialogOpen(true)}>-</Fab>
-              <Fab className='btn-fab' disabled={!started} onClick={() => setStakeDialogOpen(true)}>+</Fab>
-            </div>
+        <div className='section'>
+          <div className='center-h'>
+            {allowed ? (
+              <Button
+                variant='contained'
+                className='btn-primary'
+                onClick={() => setStakeDialogOpen(true)}
+              >
+                Stake
+              </Button>
+            ): (
+              <Button
+                variant='contained'
+                className='btn-primary'
+                onClick={onApprove}
+              >
+                {`Approve ${stakeTokenInfo.symbol}`}
+              </Button>
+            )}
+            
+            <Button
+              variant='outlined'
+              className='btn-outlined ml-10'
+              disabled={staked <= 0}
+              onClick={() => setUnstakeDialogOpen(true)}
+            >
+              <b>-</b>
+            </Button>
           </div>
-        )}
+        </div>
       </CardContent>
 
       <StakeDialog
