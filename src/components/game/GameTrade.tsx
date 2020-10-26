@@ -73,8 +73,9 @@ const GameTrade: React.FC<Props> = ({ history }: Props) => {
                 drawOnChartArea: false
               },
               ticks: {
-                  suggestedMax: 10,
-                  beginAtZero: true,
+                  suggestedMax: 4,
+                  min: 900000,
+                  max: 1100000
               }
             }]
           },
