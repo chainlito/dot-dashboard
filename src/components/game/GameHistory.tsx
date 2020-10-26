@@ -68,7 +68,7 @@ const GameHistory: React.FC<Props> = ({
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">{history._id}</TableCell>
                   <TableCell>{moment(history.date).format('YYYY/MM/DD HH:mm')}</TableCell>
-                  <TableCell>Coming Soon</TableCell>
+                  <TableCell>{(history.rebase_rate * 100).toFixed(2)}%</TableCell>
                   <TableCell>{history.percentage}</TableCell>
                   <TableCell>{history.boost_count}</TableCell>
                   <TableCell>{numberWithDecimals(history.supply_red, Config.RedToken.decimals, Config.Utils.decimals)}</TableCell>
