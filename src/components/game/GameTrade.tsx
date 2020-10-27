@@ -81,7 +81,7 @@ const GameTrade: React.FC<Props> = ({ history }: Props) => {
           },
           elements: {
             line: {
-              fill: false
+              fill: true
             }
           }
         }}
