@@ -7,12 +7,13 @@ interface OwnProps {
   rewardToken: any;
   earned: number;
   percent: number;
+  started: boolean;
   onHarvest: () => void;
 }
 
 type Props = OwnProps;
 
-export const RewardAsset = ({ earned, onHarvest, percent, rewardToken }: Props) => {
+export const RewardAsset = ({ earned, onHarvest, started, rewardToken }: Props) => {
   return (
     <Card className='card card-h medium transparent'>
       <CardContent>
@@ -39,7 +40,7 @@ export const RewardAsset = ({ earned, onHarvest, percent, rewardToken }: Props) 
               variant='contained'
               className='btn-primary'
               onClick={onHarvest}
-              disabled={earned <= 0}
+              disabled={earned <= 0 || !started}
             >
               Harvest
             </Button>

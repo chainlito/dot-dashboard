@@ -167,7 +167,8 @@ async function poolHarvest(contract: any, from: string) {
 }
 
 async function poolExit(contract: any, from: string) {
-  await contract.methods.exit().send({ from, gas: 200000 })
+  const stakedAmount = await getBalance(contract, from);
+  await contract.methods.withdraw(stakedAmount).send({ from, gas: 200000 })
     .on('error', function(error: any, receipt: any) {
       console.log(error, receipt);
     });

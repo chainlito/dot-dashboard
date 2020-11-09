@@ -82,13 +82,8 @@ const PoolComposition: React.FC<Props> = ({
   });
   useEffect(() => {
     loadEarned(); loadStaked();
-    //if (allowed) {
-      
-      /*ethscanclient.getTransactionsCount(poolInfo.address).then(res => 
-        setEstimatePercent(getEstimatedPercent(res)));*/
-      const timeInterval = setInterval(() => { loadEarned(); loadStaked(); }, 60000);
-      return () => clearInterval(timeInterval);
-    //}
+    const timeInterval = setInterval(() => { loadEarned(); loadStaked(); }, 60000);
+    return () => clearInterval(timeInterval);
   });
 
 
@@ -129,6 +124,7 @@ const PoolComposition: React.FC<Props> = ({
             <RewardAsset
               rewardToken={rewardTokenInfo}
               earned={earned}
+              started={timeLeft > 0}
               percent={1}
               onHarvest={harvest}
             />
