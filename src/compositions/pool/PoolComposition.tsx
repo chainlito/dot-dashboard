@@ -115,15 +115,13 @@ const PoolComposition: React.FC<Props> = ({
               {`Deposit ${stakeTokenInfo.symbol} and earn ${rewardTokenInfo.symbol}`}
             </div>
             <div className={`center-h text-small text-gray`}>
-              {timeLeft > 0 ? 
-                `Time Left : ${secondsToDays(timeLeft)} day(s), ${secondsToHours(timeLeft)} hour(s), ${secondsToMinutes(timeLeft)} minute(s), ${secondsToSeconds(timeLeft)} second(s)` :
-                `The Pool is not open yet, please check our telegram.`}
+              {`farm is now closed,  please withdraw your stake`}
             </div>
           </div>
           <div className='center-h wp-100 mt-30 home-container'>
             <RewardAsset
               rewardToken={rewardTokenInfo}
-              earned={earned}
+              earned={0}
               started={timeLeft > 0}
               percent={1}
               onHarvest={harvest}
